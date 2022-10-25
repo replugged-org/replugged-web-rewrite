@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+    php:
+        build: .
+        volumes:
+            - ..:/workspace:cached
+        ports:
+            # For use with PHP (e.g. `php -S localhost:8000`)
+            - "8000:8000"
+        command: sleep infinity
+    mariadb:
+        image: mariadb:10.4
+        expose:
+            # Expose mariadb port to php service (access as hostname "mariadb" from within php container)
+            - "3306"
+        ports:
+            - "3306:3006"
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: replugged
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        expose:
+            - "8080"
+        ports:
+            - "8080:80"
+        environment:
+            PMA_HOST: mariadb
+            PMA_PORT: 3306
