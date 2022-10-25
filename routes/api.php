@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// TODO: Figure out if every API route needs the auth middleware and start
+// implementing it
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
