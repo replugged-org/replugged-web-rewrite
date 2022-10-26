@@ -139,11 +139,17 @@
 {{-- TODO: See if there's a way that doesn't need attribute merging --}}
 @php
     $headerClasses = $opened ?? false ? 'container opened' : 'container';
+
+    // Test auth
+    if (request('logged')) {
+        $user = new \App\Models\User();
+        Auth::login($user);
+    }
 @endphp
 
 <header {{ $attributes->merge(['class' => $headerClasses]) }}>
     <a class="logo">
-        <x-icons.replugged class='plug' />
+        <x-images.replugged class='plug' />
     </a>
 
     <nav class="nav">
@@ -152,4 +158,24 @@
         <a class="nav-link">Contributors</a>
         <a class="nav-link">Discord Server</a>
     </nav>
+
+    <div class="account">
+        @guest
+            <x-button to="#">Login with Discord</x-button>
+        @else
+            <div class="profile">
+                <x-images.avatar />
+                <div class="details">
+                    <div class="name">
+                        <div class="username">username<span class="discriminator">#0000</span></div>
+                        {{-- if isStaff add badge --}}
+                    </div>
+                    <div>
+                        <a class="link" href="#me">Account</a>
+                        <a class="link" href="#logout">Logout</a>
+                    </div>
+                    {{-- if isStaff link to backoffice called "Administration" --}}
+                </div>
+            </div>
+        @endguest
 </header>
