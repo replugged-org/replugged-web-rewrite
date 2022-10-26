@@ -22,6 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'avatar',
+        'discord_token',
+        'discord_refresh_token',
     ];
 
     /**
@@ -30,7 +32,6 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
         'remember_token',
         'discord_token',
         'discord_refresh_token',

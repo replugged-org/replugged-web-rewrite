@@ -17,6 +17,7 @@ class OAuthController extends Controller
     public function discordCallback(Request $request)
     {
         $discordUser = Socialite::driver('discord')->user();
+        $accessTokenResponseBody = $discordUser->accessTokenResponseBody;
 
         $user = User::updateOrCreate([
             'discord_id' => $discordUser->id,
@@ -24,11 +25,11 @@ class OAuthController extends Controller
             'name' => $discordUser->name,
             'email' => $discordUser->email,
             'avatar' => $discordUser->avatar,
-            'discord_token' => $discordUser->token,
-            'discord_refresh_token' => $discordUser->refreshToken,
+            'discord_token' => $accessTokenResponseBody['access_token'],
+            'discord_refresh_token' => $accessTokenResponseBody['refresh_token'],
         ]);
 
-        Auth::login($discordUser);
+        Auth::login($user);
 
         return redirect('/dashboard');
     }
