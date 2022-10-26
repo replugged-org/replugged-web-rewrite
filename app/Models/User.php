@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'avatar',
+        'discriminator',
         'discord_token',
         'discord_refresh_token',
     ];
