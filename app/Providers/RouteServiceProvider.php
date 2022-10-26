@@ -20,6 +20,15 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/home';
 
     /**
+     * This namespace is applied to the controller routes.
+     *
+     * In addition, it is set as the URL generator's root namespace.
+     *
+     * @var string
+     */
+    protected $namespace = 'App\Http\Controllers';
+
+    /**
      * Define your route model bindings, pattern filters, and other route configuration.
      *
      * @return void
@@ -27,13 +36,16 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->configureRateLimiting();
+        $this->setRootControllerNamespace();
 
         $this->routes(function () {
             Route::middleware('api')
+                ->namespace($this->namespace)
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
     }
