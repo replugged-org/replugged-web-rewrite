@@ -161,18 +161,18 @@
 
     <div class="account">
         @guest
-            <x-button to="#">Login with Discord</x-button>
+            <x-button to="/api/v1/login">Login with Discord</x-button>
         @else
             <div class="profile">
-                <x-images.avatar />
+                <x-images.avatar user />
                 <div class="details">
                     <div class="name">
-                        <div class="username">username<span class="discriminator">#0000</span></div>
+                        <div class="username">{{ Auth::user()->name }}<span class="discriminator">#{{ Auth::user()->discriminator }}</span></div>
                         {{-- if isStaff add badge --}}
                     </div>
                     <div>
                         <a class="link" href="#me">Account</a>
-                        <a class="link" href="#logout">Logout</a>
+                        <a class="link" href="/api/v1/logout">Logout</a>
                     </div>
                     {{-- if isStaff link to backoffice called "Administration" --}}
                 </div>
