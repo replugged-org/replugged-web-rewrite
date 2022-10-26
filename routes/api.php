@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::get('login', function (Request $request) {
         $params = http_build_query($request->input());
-        return redirect("/api/v1/oauth/discord?{$params}");
+        return redirect("/api/v1/oauth/discord/redirect?{$params}");
     });
 
-    Route::get('oauth/discord', 'OAuthController@discord');
+    Route::get('oauth/discord/redirect', 'OAuthController@discordRedirect');
+    Route::get('oauth/discord/callback', 'OAuthController@discordCallback');
 });
 
 
