@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('v1')->group(function () {
+    Route::get('login', function (Request $request) {
+        $params = http_build_query($request->input());
+        return redirect("/api/v1/oauth/discord?{$params}");
+    });
+
+    Route::get('oauth/discord', 'OAuthController@discord');
+});
+
+
 // TODO: Figure out if every API route needs the auth middleware and start
 // implementing it
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
