@@ -20,8 +20,14 @@ Route::prefix('v1')->group(function () {
         return redirect("/api/v1/oauth/discord/redirect?{$params}");
     });
 
+    Route::get('logout', function (Request $request) {
+        $params = http_build_query($request->input());
+        return redirect("/api/v1/oauth/discord/logout?{$params}");
+    });
+
     Route::get('oauth/discord/redirect', 'OAuthController@discordRedirect');
     Route::get('oauth/discord/callback', 'OAuthController@discordCallback');
+    Route::get('oauth/discord/logout', 'OAuthController@discordLogout');
 });
 
 

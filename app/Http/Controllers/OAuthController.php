@@ -33,4 +33,11 @@ class OAuthController extends Controller
 
         return redirect('/dashboard');
     }
+
+    public function discordLogout(Request $request)
+    {
+        Auth::logout();
+
+        return redirect('/');
+    }
 }
