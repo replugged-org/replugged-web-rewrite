@@ -103,6 +103,15 @@
     }
 </style>
 
-@props(['to'])
+@props(['to', 'link', 'border', 'color'])
 
-<a href="{{ $to }}" class="button">{{ $slot }}</a>
+@php
+    $mainClass = 'button';
+    $mainClass = isset($border) ? 'button-border' : $mainClass;
+    $mainClass = isset($link) ? 'button-link' : $mainClass;
+    $classes = [$mainClass];
+    $classes[] = $color ?? '';
+    $classes = trim(implode(' ', $classes));
+@endphp
+
+<a href="{{ $to }}" {{ $attributes->merge(['class' => $classes]) }}>{{ $slot }}</a>
