@@ -164,10 +164,11 @@
             <x-button to="/api/v1/login">Login with Discord</x-button>
         @else
             <div class="profile">
-                <x-images.avatar user />
+                <x-images.avatar />
                 <div class="details">
                     <div class="name">
-                        <div class="username">{{ Auth::user()->name }}<span class="discriminator">#{{ Auth::user()->discriminator }}</span></div>
+                        <div class="username">{{ Auth::user()->name }}<span
+                                class="discriminator">#{{ Auth::user()->discriminator }}</span></div>
                         {{-- if isStaff add badge --}}
                     </div>
                     <div>
