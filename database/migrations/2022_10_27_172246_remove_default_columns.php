@@ -14,10 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('discord_id')->unique();
-            $table->string('avatar');
-            $table->string('discord_token');
-            $table->string('discord_refresh_token');
+            $table->dropColumn('password');
+            $table->dropColumn('email_verified_at');
+            $table->dropColumn('remember_token');
         });
     }
 
@@ -29,10 +28,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('discord_id');
-            $table->dropColumn('avatar');
-            $table->dropColumn('discord_token');
-            $table->dropColumn('discord_refresh_token');
+            $table->string('password');
+            $table->timestamp('email_verified_at');
+            $table->string('remember_token', 100);
         });
     }
 };
