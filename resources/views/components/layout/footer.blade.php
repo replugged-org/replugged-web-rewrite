@@ -28,7 +28,7 @@
         flex-wrap: wrap;
     }
 
-    .link {
+    .footer-link {
         color: var(--text-color);
     }
 
@@ -61,12 +61,12 @@
         <span>Replugged is not affiliated or endorsed by Discord. Discord is a trademark of Discord Inc.</span>
     </div>
     <div class="section">
-        <a class="link" href="{{ RoutePro::DOCS() }}">Docs</a>
-        <a class="link" href="{{ RoutePro::STATS() }}">Stats</a>
-        <a class="link" href="{{ RoutePro::BRANDING() }}">Branding</a>
-        <a class="link" href="{{ RoutePro::GITHUB() }}" target="_blank" rel='noreferrer'>GitHub</a>
-        <a class="link" href="{{ RoutePro::TRANSLATIONS() }}" target="_blank" rel='noreferrer'>Translations</a>
-        <a class="link" href="{{ RoutePro::TERMS() }}">Terms</a>
-        <a class="link" href="{{ RoutePro::PRIVACY() }}">Privacy</a>
+        <a class="footer-link" href="{{ RoutePro::DOCS() }}">Docs</a>
+        <a class="footer-link" href="{{ RoutePro::STATS() }}">Stats</a>
+        <a class="footer-link" href="{{ RoutePro::BRANDING() }}">Branding</a>
+        <a class="footer-link" href="{{ RoutePro::GITHUB() }}" target="_blank" rel='noreferrer'>GitHub</a>
+        <a class="footer-link" href="{{ RoutePro::TRANSLATIONS() }}" target="_blank" rel='noreferrer'>Translations</a>
+        <a class="footer-link" href="{{ RoutePro::TERMS() }}">Terms</a>
+        <a class="footer-link" href="{{ RoutePro::PRIVACY() }}">Privacy</a>
     </div>
 </footer>

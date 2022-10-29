@@ -62,11 +62,11 @@
         gap: 16px;
     }
 
-    .link {
+    .header-link {
         font-size: .9rem;
     }
 
-    .link+.link {
+    .header-link+.header-link {
         margin-left: 8px;
     }
 
@@ -172,8 +172,8 @@
                         {{-- if isStaff add badge --}}
                     </div>
                     <div>
-                        <a class="link" href="#me">Account</a>
-                        <a class="link" href="/api/v1/logout">Logout</a>
+                        <a class="header-link" href="#me">Account</a>
+                        <a class="header-link" href="/api/v1/logout">Logout</a>
                     </div>
                     {{-- if isStaff link to backoffice called "Administration" --}}
                 </div>
