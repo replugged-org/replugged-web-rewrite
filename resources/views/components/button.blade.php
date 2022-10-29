@@ -97,10 +97,6 @@
         text-decoration: underline;
     }
 
-    .icon {
-        width: 18px;
-        height: 18px;
-    }
 </style>
 
 @props(['to', 'link', 'border', 'color'])
