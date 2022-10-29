@@ -2,10 +2,17 @@
 
 namespace App\Helpers;
 
+use DirectoryIterator;
+
 class Icons
 {
-    public static function get(string $name)
+    // TODO: Implement searching for SVGs in the images folder.
+    public static function get(string $name, string $class = null)
     {
-        return app('icons')->getIcon($name);
+        $icons = app('icons');
+        if (isset($class)) {
+            $icons->addCssClass($class);
+        }
+        return $icons->getIcon($name)->setAttribute('height', '')->setAttribute('width', '');
     }
 }
