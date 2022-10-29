@@ -215,6 +215,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'RoutePro' => App\Helpers\RoutePro::class,
         'EndPro' => App\Helpers\EndPro::class,
+        'Icons' => App\Helpers\Icons::class,
     ])->toArray(),
 
 ];
