@@ -10,3 +10,5 @@
 </head>
 
 <x-layout.header></x-layout.header>
+
+<x-layout.footer></x-layout.footer>

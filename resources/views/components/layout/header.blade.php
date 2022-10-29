@@ -1,5 +1,5 @@
 <style>
-    .container {
+    .header-container {
         height: 72px;
         padding: 8px 32px;
         display: flex;
@@ -138,7 +138,7 @@
 
 {{-- TODO: See if there's a way that doesn't need attribute merging --}}
 @php
-    $headerClasses = $opened ?? false ? 'container opened' : 'container';
+    $headerClasses = $opened ?? false ? 'header-container opened' : 'header-container';
 
     // Test auth
     if (request('logged')) {
