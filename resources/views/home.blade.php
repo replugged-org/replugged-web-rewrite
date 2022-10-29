@@ -126,11 +126,11 @@
                 </p>
                 <div class="buttons">
                     <x-button to="{{ RoutePro::INSTALLATION() }}">
-                        <x-icon name="zap" />
+                        <x-icon name="zap" class="icon" />
                         <span>Installation</span>
                     </x-button>
                     <x-button to="{{ RoutePro::DICKSWORD() }}" link>
-                        <x-icon name="message-circle" />
+                        <x-icon name="message-circle" class="icon" />
                         <span>Discord Server</span>
                     </x-button>
                 </div>

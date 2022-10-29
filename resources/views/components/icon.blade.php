@@ -5,10 +5,6 @@
     }
 </style>
 
-@props(['name'])
+@props(['name', 'class'])
 
-@php
-    app('icons')->addCssClass('icon');
-@endphp
-
-<?= Icons::get($name) ?>
+<?= Icons::get($name, $class ?? null) ?>
