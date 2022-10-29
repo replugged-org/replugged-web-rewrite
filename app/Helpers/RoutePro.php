@@ -4,8 +4,20 @@ namespace App\Helpers;
 
 use Exception;
 
+/**
+ * Utility class for fetching and dynamically generating route strings.
+ *
+ * @author lexisother
+ */
 class RoutePro
 {
+    /**
+     * Automatically called by PHP once a non-existent static function is called.
+     * The function allows for altering what occurs when this happens, instead
+     * of PHP throwing an exception for you.
+     *
+     * @see https://www.php.net/manual/en/language.oop5.overloading.php#object.callstatic
+     */
     public static function __callStatic($routeName, $parameters)
     {
         $Routes = [
@@ -81,12 +93,4 @@ class RoutePro
             return $route;
         }
     }
-
-
-
-
-
-
-
-
 }
