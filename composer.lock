@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "408d9cf75445c7b9d7c9de164227aa51",
+    "content-hash": "4df833111f950ab05bbea89705e20e29",
     "packages": [
         {
             "name": "brick/math",
@@ -2661,6 +2661,64 @@
                 }
             ],
             "time": "2022-07-30T15:51:26+00:00"
+        },
+        {
+            "name": "pixelrobin/php-feather",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Pixelrobin/php-feather.git",
+                "reference": "878334ee7512c9766d6a2f756734393aaf5f0044"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Pixelrobin/php-feather/zipball/878334ee7512c9766d6a2f756734393aaf5f0044",
+                "reference": "878334ee7512c9766d6a2f756734393aaf5f0044",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "ext-dom": "*",
+                "ext-json": "*",
+                "ext-libxml": "*",
+                "ext-simplexml": "*",
+                "npm-asset/feather-icons": ">=4.28",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Feather\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Savchuk",
+                    "email": "pixelrobin@hotmail.com"
+                },
+                {
+                    "name": "Nate Wiebe",
+                    "email": "nate@northern.co"
+                }
+            ],
+            "description": "PHP library for feather icons",
+            "keywords": [
+                "feather",
+                "icons",
+                "pixelrobin",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/Pixelrobin/php-feather/issues",
+                "source": "https://github.com/Pixelrobin/php-feather/tree/v2.0.0"
+            },
+            "time": "2022-04-06T13:33:40+00:00"
         },
         {
             "name": "psr/cache",

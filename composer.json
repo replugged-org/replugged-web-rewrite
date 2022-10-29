@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
+        "pixelrobin/php-feather": "^2.0",
         "socialiteproviders/discord": "^4.1"
     },
     "require-dev": {
