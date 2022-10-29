@@ -1,4 +1,6 @@
 :root {
+    --debug-background: rgb(230, 155, 165);
+
     --background-light: #353535;
     --background-primary: #303030;
     --background-secondary: #252525;
@@ -54,6 +56,11 @@ main {
     margin: 0 auto;
     max-width: 1300px;
     padding: 1em 2em;
+    width: 100%;
+}
+
+.debug-container {
+    background-color: var(--debug-background);
     width: 100%;
 }
 
