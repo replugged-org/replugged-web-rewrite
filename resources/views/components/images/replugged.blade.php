@@ -3,7 +3,7 @@
     $month = date('m');
 @endphp
 
-@if ($month == '31-10')
+@if ($dayMonth == '31-10')
     <svg {{ $attributes }} width="100%" height="100%" viewBox="0 0 2160 2160" version="1.1"
         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
         xmlns:serif="http://www.serif.com/"
