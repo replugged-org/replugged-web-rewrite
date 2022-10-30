@@ -39,6 +39,12 @@
         .buttons {
             display: flex;
             align-items: center;
+            gap: 16px;
+        }
+
+        .header-buttons {
+            display: flex;
+            align-items: center;
             justify-content: center;
             gap: 32px;
         }
@@ -124,7 +130,7 @@
                 <h1 class="title">Powerful and simple Discord client mod</h1>
                 <p class="motto">Enhance your Discord experience with new features and looks. Make your Discord truly yours.
                 </p>
-                <div class="buttons">
+                <div class="header-buttons">
                     <x-button to="{{ RoutePro::INSTALLATION() }}">
                         <x-icon name="zap" class="icon" />
                         <span>Installation</span>
@@ -135,6 +141,57 @@
                     </x-button>
                 </div>
             </div>
+        </div>
+
+        <div class="wrapper">
+            <section class="home-section">
+                <h2 class="home-section-title">Zero compromise experience</h2>
+                <p class="home-section-description">
+                    Replugged has everything you need to enhance your Discord client, without compromising on performance or
+                    security.
+                </p>
+
+                <div class="features">
+                    <x-home.feature icon="plugin" title="Plugins"
+                        description="Adds new features to your Discord client, or enhance already existing once by extending them. You can even write your own plugins!" />
+                    <x-home.feature icon="brush" title="Themes"
+                        description="Give your Discord client a fresh new look, that matches your taste. You're no longer limited by what Discord gave you, only imagination!" />
+                    <x-home.feature icon="pen-tool" title="Customizable"
+                        description="Plugins and themes are fully customizable, through easy-to-use interfaces, allowing you to turn your Discord client into what you want, whatever that is. Unnecessary feature? Disable it. Don't like the color? Change it." />
+                    <x-home.feature icon="feather" title="Lightweight"
+                        description="Replugged is designed to consume as little resources as possible, and provides to plugin developers powerful tools to build efficient and robust plugins."
+                        note="Note that Replugged still runs on top of the official client, and can't magically make it lighter. We just do our best to not consume even more resources." />
+                    <x-home.feature icon="home" title="Feels like home"
+                        description="We try to integrate as smoothly as possible within Discord's design language. Every modded element feels like it always has been there. You'll almost forget you're running a modded client!" />
+                </div>
+            </section>
+            <hr />
+            <section class="home-section">
+                <h2 class="home-section-title">Powerful APIs for amazing plugins</h2>
+                <p class="home-section-description">Replugged gives plugin and theme developers the tools they need to build
+                    their next amazing plugin or theme.</p>
+
+                <div class="features">
+                    <x-home.feature icon="coffee" title="Standard Library"
+                        description="Don't struggle with basic setup or boilerplate code. Replugged already provies everything you need to get started and do your patchwork."
+                        linkto="{{ RoutePro::DOCS() }}" linklabel="Read the documentation" />
+                </div>
+            </section>
+            <hr />
+            <section class="home-section">
+                <h2 class="home-section-title">Make your Discord spicier</h2>
+                <p class="home-section-description">Stop limiting yourself to what Discord gives you. Get Replugged!</p>
+                <div class="buttons">
+                    <x-button to="{{ RoutePro::INSTALLATION() }}">
+                        <x-icon name="zap" class="icon" />
+                        <span>Installation</span>
+                    </x-button>
+                    <x-button to="{{ RoutePro::DICKSWORD() }}" link>
+                        <x-icon name="message-circle" class="icon" />
+                        <span>Discord Server</span>
+                    </x-button>
+                </div>
+            </section>
         </div>
     </main>
 @endsection

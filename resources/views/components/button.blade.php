@@ -9,12 +9,6 @@
         color: var(--red);
     }
 
-    .buttons {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-    }
-
     .button,
     .button-link,
     .button-border {
@@ -96,7 +90,6 @@
     .button-link:hover {
         text-decoration: underline;
     }
-
 </style>
 
 @props(['to', 'link', 'border', 'color'])
