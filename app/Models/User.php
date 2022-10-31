@@ -144,6 +144,7 @@ class User extends Authenticatable
         'discriminator',
         'discord_token',
         'discord_refresh_token',
+        'flags',
     ];
 
     /**
