@@ -132,6 +132,24 @@ class User extends Authenticatable
     const FLAG_SERVER_BOOSTER = 1 << 27;
 
     /**
+     * Group of flags that are private.
+     */
+    const FLAG_GROUP_PRIVATE = 0 |
+        self::FLAG_BANNED |
+        self::FLAG_BANNED_PUBLISHER |
+        self::FLAG_BANNED_VERIFICATION |
+        self::FLAG_BANNED_HOSTING |
+        self::FLAG_BANNED_REPORTING |
+        self::FLAG_BANNED_SYNC |
+        self::FLAG_BANNED_EVENTS |
+        self::FLAG_APPEALED_SUPPORT |
+        self::FLAG_APPEALED_MUTE |
+        self::FLAG_APPEALED_BAN |
+        self::FLAG_APPEALED_SYNC |
+        self::FLAG_APPEALED_EVENTS |
+        self::FLAG_GHOST;
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
