@@ -17,7 +17,21 @@ class Icons
             }
             return $icons->getIcon($name)->setAttribute('height', '')->setAttribute('width', '');
         } catch (IconNotFoundException $e) {
-            $dir = new DirectoryIterator(dirname(__FILE__) . "/../../resources/images");
+            // Base directory to search in
+            $basedir = dirname(__FILE__) . "/../../resources/images";
+            if (str_contains($name, ".")) {
+                // Nesting was detected, add whatever nesting segments to the base directory
+                $basedir .= "/" . str_replace(".", "/", $name);
+                $seg = explode("/", $basedir);
+                array_pop($seg);
+                $basedir = implode("/", $seg);
+
+                // Set the new filename to the last `.` split part of the name
+                $namesplit = explode(".", $name);
+                $name = end($namesplit);
+            }
+
+            $dir = new DirectoryIterator($basedir);
             foreach ($dir as $file) {
                 $filename = $file->getFilename();
                 $filename = explode(".", $filename);
