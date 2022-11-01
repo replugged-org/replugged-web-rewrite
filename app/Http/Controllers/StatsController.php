@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class StatsController extends Controller
 {
-    public function contrubutors(Request $request)
+    public function index()
+    {
+        return view('contributors', ['contributors' => $this->contributors()]);
+    }
+
+    public function contributors()
     {
         $res = [
             'developers' => [],
