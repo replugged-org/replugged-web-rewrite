@@ -12,9 +12,7 @@
 @props(['user'])
 
 @if ($user ?? false)
-    {{-- Implement fetching of Discord avatar --}}
-    <img src="https://placekitten.com/128/128" alt="{{ Auth::user()->name }}'s avatar"
-        {{ $attributes->merge(['class' => 'avatar']) }} />
+    <img src="{{ $user->avatar }}" alt="{{ $user->name }}'s avatar" {{ $attributes->merge(['class' => 'avatar']) }} />
 @else
     <img src="{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}'s avatar"
         {{ $attributes->merge(['class' => 'avatar']) }} />
