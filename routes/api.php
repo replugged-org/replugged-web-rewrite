@@ -30,6 +30,8 @@ Route::prefix('v1')->group(function () {
     Route::get('oauth/discord/logout', 'OAuthController@discordLogout');
 
     Route::get('user/{id}', 'UserController@profile');
+
+    Route::get('stats/contributors', 'StatsController@contrubutors');
 });
 
 
