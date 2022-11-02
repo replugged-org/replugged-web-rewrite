@@ -31,7 +31,7 @@ Route::prefix('v1')->group(function () {
 
     Route::get('user/{id}', 'UserController@profile');
 
-    Route::get('stats/contributors', 'StatsController@contrubutors');
+    Route::get('stats/contributors', 'StatsController@contributors');
 });
 
 
