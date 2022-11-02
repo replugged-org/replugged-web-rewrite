@@ -145,6 +145,11 @@
         $user = new \App\Models\User();
         Auth::login($user);
     }
+
+    $isStaff = 0;
+    if (Auth::check()) {
+        $isStaff = Auth::user()->flags & \App\Models\User::FLAG_STAFF;
+    }
 @endphp
 
 <header {{ $attributes->merge(['class' => $headerClasses]) }}>
@@ -169,13 +174,18 @@
                     <div class="name">
                         <div class="username">{{ Auth::user()->name }}<span
                                 class="discriminator">#{{ Auth::user()->discriminator }}</span></div>
-                        {{-- if isStaff add badge --}}
+                        @if ($isStaff)
+                            <x-icon name="badges.staff" class="badge" />
+                        @endif
                     </div>
                     <div>
                         <a class="header-link" href="#me">Account</a>
                         <a class="header-link" href="/api/v1/logout">Logout</a>
                     </div>
-                    {{-- if isStaff link to backoffice called "Administration" --}}
+
+                    @if ($isStaff)
+                        <a class="header-link" href="{{ RoutePro::BACKOFFICE() }}">Administration</a>
+                    @endif
                 </div>
             </div>
         @endguest
