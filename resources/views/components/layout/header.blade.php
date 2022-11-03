@@ -153,15 +153,21 @@
 @endphp
 
 <header {{ $attributes->merge(['class' => $headerClasses]) }}>
-    <a class="logo">
+    <a class="logo" href="{{ route('home') }}">
         <x-images.replugged class='plug' />
     </a>
 
     <nav class="nav">
-        <a class="nav-link">Installation</a>
-        <a class="nav-link">Store</a>
-        <a class="nav-link">Contributors</a>
-        <a class="nav-link">Discord Server</a>
+        @if (Route::has('installation'))
+            <a class="nav-link" href="{{ route('installation') }}">Installation</a>
+        @endif
+        @if (Route::has('store'))
+            <a class="nav-link" href="{{ route('store') }}">Store</a>
+        @endif
+        @if (Route::has('contributors'))
+            <a class="nav-link" href="{{ route('contributors') }}">Contributors</a>
+        @endif
+        <a class="nav-link" href="{{ RoutePro::DICKSWORD() }}">Discord Server</a>
     </nav>
 
     <div class="account">

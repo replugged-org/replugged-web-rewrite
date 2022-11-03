@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 // TODO: Move this to `home` view, name the route
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+
+Route::get('contributors', "StatsController@index")->name('contributors');
 
 Route::get('contributors', "StatsController@index");
