@@ -125,6 +125,15 @@
             font-weight: normal;
             font-size: 14px;
         }
+
+        code {
+            padding: .2em;
+            margin: -.2em 0;
+            border-radius: 3px;
+            background-color: var(--background-secondary);
+            font-family: JetBrains Mono, sans-serif;
+            font-size: 85%;
+        }
     </style>
 @endpush
 

@@ -63,6 +63,9 @@ main {
     background-color: var(--debug-background);
     width: 100%;
 }
+.debug-container > code {
+    padding: 0;
+}
 
 h1,
 h2,
