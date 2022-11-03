@@ -20,4 +20,4 @@ Route::get('/', function () {
 
 Route::get('contributors', "StatsController@index")->name('contributors');
 
-Route::get('contributors', "StatsController@index");
+Route::get('installation', 'DocsController@installation');
