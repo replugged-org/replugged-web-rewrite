@@ -1,0 +1,36 @@
+version: "3"
+
+# NOTE: These notes are not for you.
+# Provide to me these bodies three.
+# On the VSCode tunnel:
+#  - `docker compose -f .devcontainer/docker-compose.local.yml up`
+#  - `ngrok http 8000`
+#  - `docker run -it -p 8000:8000 --expose 8000 --network <ID of the compose network> -v $(pwd):/mnt runner /bin/bash`
+# Within the runner container:
+#  - `cd /mnt`
+#  - `art serve --port 8000 --host 0.0.0.0`
+#
+# Should work just fine!
+
+services:
+  mariadb:
+    image: mariadb:10.4
+    command: --default-authentication-plugin=mysql_native_password
+    expose:
+      # Expose mariadb port to php service (access as hostname "mariadb" from within php container)
+      - "3306"
+    ports:
+      - "3306:3006"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: replugged
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    expose:
+      - "8080"
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
