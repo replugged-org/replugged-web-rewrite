@@ -21,3 +21,5 @@ Route::get('/', function () {
 Route::get('contributors', "StatsController@index")->name('contributors');
 
 Route::get('installation', 'DocsController@installation');
+
+Route::get('me', 'UserController@me')->name('me')->middleware('auth');

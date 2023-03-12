@@ -18,7 +18,7 @@ Route::prefix('v1')->group(function () {
     Route::get('login', function (Request $request) {
         $params = http_build_query($request->input());
         return redirect("/api/v1/oauth/discord/redirect?{$params}");
-    });
+    })->name('login');
 
     Route::get('logout', function (Request $request) {
         $params = http_build_query($request->input());
