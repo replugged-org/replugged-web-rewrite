@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3d2f4f27f790b251718aaccd2a9a504a",
+    "content-hash": "19a9f84b79241cf90ea6cb9d57b2d155",
     "packages": [
         {
             "name": "brick/math",
@@ -3590,6 +3590,56 @@
                 "source": "https://github.com/socialiteproviders/manager"
             },
             "time": "2022-09-02T10:20:10+00:00"
+        },
+        {
+            "name": "socialiteproviders/patreon",
+            "version": "5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Patreon.git",
+                "reference": "8311da1b20c5dae2087aa6f8b5e84afaabdb3e5f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Patreon/zipball/8311da1b20c5dae2087aa6f8b5e84afaabdb3e5f",
+                "reference": "8311da1b20c5dae2087aa6f8b5e84afaabdb3e5f",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^8.0",
+                "socialiteproviders/manager": "^4.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Patreon\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pieter Maes",
+                    "email": "maescool@gmail.com"
+                }
+            ],
+            "description": "Patreon OAuth2 Provider for Laravel Socialite",
+            "keywords": [
+                "laravel",
+                "oauth",
+                "patreon",
+                "provider",
+                "socialite"
+            ],
+            "support": {
+                "docs": "https://socialiteproviders.com/patreon",
+                "issues": "https://github.com/socialiteproviders/providers/issues",
+                "source": "https://github.com/socialiteproviders/providers"
+            },
+            "time": "2022-10-21T23:38:33+00:00"
         },
         {
             "name": "symfony/console",

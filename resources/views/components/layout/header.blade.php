@@ -185,8 +185,8 @@
                         @endif
                     </div>
                     <div>
-                        <a class="header-link" href="#me">Account</a>
-                        <a class="header-link" href="/api/v1/logout">Logout</a>
+                        <a class="header-link" href="{{ RoutePro::ME() }}">Account</a>
+                        <a class="header-link" href="{{ EndPro::LOGOUT() }}">Logout</a>
                     </div>
 
                     @if ($isStaff)

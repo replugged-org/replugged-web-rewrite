@@ -25,9 +25,21 @@ Route::prefix('v1')->group(function () {
         return redirect("/api/v1/oauth/discord/logout?{$params}");
     });
 
-    Route::get('oauth/discord/redirect', 'OAuthController@discordRedirect');
-    Route::get('oauth/discord/callback', 'OAuthController@discordCallback');
-    Route::get('oauth/discord/logout', 'OAuthController@discordLogout');
+    Route::prefix('oauth')->group(function () {
+        Route::prefix('discord')->group(function () {
+            Route::redirect('/', '/api/v1/oauth/discord/redirect');
+            Route::get('redirect', 'OAuthController@discordRedirect');
+            Route::get('callback', 'OAuthController@discordCallback');
+            Route::get('logout', 'OAuthController@discordLogout');
+        });
+
+        Route::middleware('auth')->prefix('patreon')->group(function () {
+            Route::redirect('/', '/api/v1/oauth/patreon/redirect');
+            Route::get('redirect', 'OAuthController@patreonRedirect');
+            Route::get('callback', 'OAuthController@patreonCallback');
+            Route::get('logout', 'OAuthController@patreonLogout');
+        });
+    });
 
     Route::get('user/{id}', 'UserController@profile');
 

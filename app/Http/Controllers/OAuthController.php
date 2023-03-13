@@ -55,4 +55,37 @@ class OAuthController extends Controller
 
         return redirect('/');
     }
+
+    public function patreonRedirect()
+    {
+        return Socialite::driver('patreon')->redirect();
+    }
+    public function patreonCallback()
+    {
+        $patreonUser = Socialite::driver('patreon')->user();
+        $accessTokenResponseBody = $patreonUser->accessTokenResponseBody;
+
+        $user = Auth::user();
+
+        $user->accounts()->updateOrCreate(
+            ['account_name' => 'patreon'],
+            [
+                'account_id' => $patreonUser->id,
+                'name' => $patreonUser->email,
+                'access_token' => $accessTokenResponseBody['access_token'],
+                'refresh_token' => $accessTokenResponseBody['refresh_token'],
+                'expires_at' => now()->timestamp + $accessTokenResponseBody['expires_in'],
+                'token_type' => $accessTokenResponseBody['token_type'],
+            ]
+        );
+
+        return redirect('/me');
+    }
+    public function patreonLogout()
+    {
+        // @php-ignore
+        Auth::user()->accounts()->where('name', 'patreon')->delete();
+
+        return redirect('/me');
+    }
 }
