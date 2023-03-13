@@ -85,7 +85,7 @@ class OAuthController extends Controller
         );
 
         $pledgeData = $this->patreonPledgeStatus($accessTokenResponseBody['token_type'], $accessTokenResponseBody['access_token']);
-        $user->patreonData()->updateOrCreate([], [
+        $user->patreon_data()->updateOrCreate([], [
             'pledge_tier' => $pledgeData->status->pledgeTier,
             'perks_expire_at' => $pledgeData->status->perksExpireAt,
         ]);

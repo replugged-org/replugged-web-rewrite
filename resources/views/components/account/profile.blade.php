@@ -114,7 +114,7 @@
             </div>
             <div class="role">
                 <div class="role-round role-pink"></div>
-                <span>Tier {{ $user->supporterTier }} Supporter</span>
+                <span>Tier {{ $user->patreon_data->pledge_tier }} Supporter</span>
             </div>
         </div>
     </div>

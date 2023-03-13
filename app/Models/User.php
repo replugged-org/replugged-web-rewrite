@@ -185,7 +185,7 @@ class User extends Authenticatable
         return $this->hasMany(Account::class);
     }
 
-    public function patreonData(): HasOne
+    public function patreon_data(): HasOne
     {
         return $this->hasOne(PatreonData::class);
     }
