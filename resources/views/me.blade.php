@@ -21,57 +21,6 @@
             grid-column: 1 / 3;
         }
 
-        .linked-account {
-            display: flex;
-            margin-bottom: 16px;
-            padding: 16px;
-            gap: 24px;
-
-            background-color: var(--background-secondary);
-        }
-
-        .linked-account-icon {
-            width: 32px;
-            height: 32px;
-            margin-top: 4px;
-            fill: currentColor;
-            flex-shrink: 0;
-        }
-
-        .linked-account-info {
-            flex: 1;
-        }
-
-        .linked-account-header {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 8px;
-            flex: 1;
-        }
-
-        .linked-account-actions {
-            display: flex;
-            gap: 16px;
-        }
-
-        .linked-account-action {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .linked-account-action svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .linked-account-explainer {
-            margin-top: 8px;
-            font-size: 0.9em;
-            opacity: 0.8;
-        }
-
         .perks-management {
             width: 100%;
         }
