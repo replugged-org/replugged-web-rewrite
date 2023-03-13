@@ -23,6 +23,7 @@ class RoutePro
         $Routes = [
             "HOME" => '/',
             "ME" => '/me',
+            "EDIT_ME" => "/me/edit",
             "CONTRIBUTORS" => '/contributors',
             "STATS" => '/stats',
             "BRANDING" => '/branding',

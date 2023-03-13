@@ -117,6 +117,7 @@
                 <div class="perks-management">
                     <h2 class="title">Replugged Supporter Perks</h2>
                     <x-account.profile :user="$user" />
+                    <x-button to="{{ RoutePro::EDIT_ME() }}">Edit perks</x-button>
                 </div>
             @endif
         </div>

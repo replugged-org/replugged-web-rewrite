@@ -23,3 +23,5 @@ Route::get('contributors', "StatsController@index")->name('contributors');
 Route::get('installation', 'DocsController@installation');
 
 Route::get('me', 'UserController@me')->name('me')->middleware('auth');
+Route::get('me/edit', 'UserController@editMe')->name('me')->middleware('auth');
+Route::post('me/edit', 'UserController@update_perks')->middleware('auth');

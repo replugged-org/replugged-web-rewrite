@@ -103,4 +103,8 @@
     $classes = trim(implode(' ', $classes));
 @endphp
 
-<a href="{{ $to }}" {{ $attributes->merge(['class' => $classes]) }}>{{ $slot }}</a>
+@isset($to)
+    <a href="{{ $to }}" {{ $attributes->merge(['class' => $classes]) }}>{{ $slot }}</a>
+@else
+    <button {{ $attributes->merge(['class' => $classes]) }}>{{ $slot }}</button>
+@endisset
