@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -160,8 +160,6 @@ class User extends Authenticatable
         'email',
         'avatar',
         'discriminator',
-        'discord_token',
-        'discord_refresh_token',
         'flags',
     ];
 
@@ -172,8 +170,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'remember_token',
-        'discord_token',
-        'discord_refresh_token',
     ];
 
     /**
@@ -182,4 +178,9 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [];
+
+    public function accounts(): HasMany
+    {
+        return $this->hasMany(Account::class);
+    }
 }

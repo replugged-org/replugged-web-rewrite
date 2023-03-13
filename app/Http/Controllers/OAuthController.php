@@ -19,6 +19,8 @@ class OAuthController extends Controller
         $discordUser = Socialite::driver('discord')->user();
         $accessTokenResponseBody = $discordUser->accessTokenResponseBody;
 
+        // Are we logging in for the first time? If not, just update the
+        // existing record.
         $user = User::updateOrCreate([
             'discord_id' => $discordUser->id,
         ], [
@@ -28,10 +30,20 @@ class OAuthController extends Controller
             // Don't ask me why the provider doesn't return the discriminator, even when it has access to it.
             // https://github.com/SocialiteProviders/Discord/blob/master/Provider.php#L89
             'discriminator' => explode("#", $discordUser->nickname)[1],
-            'discord_token' => $accessTokenResponseBody['access_token'],
-            'discord_refresh_token' => $accessTokenResponseBody['refresh_token'],
         ]);
 
+        // Insert Discord into the user's accounts.
+        $user->accounts()->updateOrCreate(
+            ['account_name' => 'discord'],
+            [
+                'access_token' => $accessTokenResponseBody['access_token'],
+                'refresh_token' => $accessTokenResponseBody['refresh_token'],
+                'expires_at' => now()->timestamp + $accessTokenResponseBody['expires_in'],
+                'token_type' => 'Bearer'
+            ]
+        );
+
+        // We are authed!
         Auth::login($user);
 
         return redirect('/');
