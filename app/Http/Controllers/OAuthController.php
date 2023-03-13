@@ -94,7 +94,6 @@ class OAuthController extends Controller
     }
     public function patreonUnlink()
     {
-        // @php-ignore
         Auth::user()->accounts()->where('account_name', 'patreon')->delete();
 
         return redirect('/me');
@@ -133,7 +132,7 @@ class OAuthController extends Controller
         // Equivalent of `DONATION_TIERS.findIndex(v => v > spent);` in JS.
         // Forgive me, Niels.
         $data->pledgeTier = array_search(current(array_filter($this::DONATION_TIERS, fn ($v) => $v > $pledgeData->currently_entitled_amount_cents)), $this::DONATION_TIERS);
-        $data->perksExpireAt = date('U', strtotime('2018-04-01T20:09:18+00:00')) + $this::GRACE_PERIOD;
+        $data->perksExpireAt = (int) date('U', strtotime('2018-04-01T20:09:18+00:00')) + $this::GRACE_PERIOD;
 
         return (object) ['donated' => $donated, 'status' => $data];
     }
