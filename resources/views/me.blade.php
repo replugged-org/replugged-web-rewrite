@@ -113,13 +113,13 @@
                 <x-account.linked-account platform="patreon" :account="$patreon" icon="patreon"
                     explainer="Link your Patreon account to benefit from the Replugged Supporter perks, and manage them from here. If you pledged but don't see your perks, use the refresh button." />
             </div>
-            @if ($user->patreon_data->pledge_tier)
+            @if (isset($user->patreon_data->pledge_tier) && $user->patreon_data->pledge_tier > 0)
                 <div class="perks-management">
                     <h2 class="title">Replugged Supporter Perks</h2>
                     <x-account.profile :user="$user" />
                     <x-button to="{{ RoutePro::EDIT_ME() }}">Edit perks</x-button>
                 </div>
-            @endif
+            @endisset
         </div>
     </main>
 @endsection

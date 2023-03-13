@@ -43,7 +43,7 @@ class UserController extends Controller
 
         $user->patreon_data->badge = $request->get('badge_url');
         $user->patreon_data->badge_color = $request->get('badge_color');
-        $user->patreon_data->badge_title = $request->get('badge_title');
+        $user->patreon_data->badge_title = $request->get('badge_title') ?? 'default';
         $user->patreon_data->save();
 
         return redirect('/me');
