@@ -113,10 +113,12 @@
                 <x-account.linked-account platform="patreon" :account="$patreon" icon="patreon"
                     explainer="Link your Patreon account to benefit from the Replugged Supporter perks, and manage them from here. If you pledged but don't see your perks, use the refresh button." />
             </div>
-            <div class="perks-management">
-                <h2 class="title">Replugged Supporter Perks</h2>
-                <x-account.profile :user="$user" />
-            </div>
+            @if ($user->patreonData->pledge_tier)
+                <div class="perks-management">
+                    <h2 class="title">Replugged Supporter Perks</h2>
+                    <x-account.profile :user="$user" />
+                </div>
+            @endif
         </div>
     </main>
 @endsection

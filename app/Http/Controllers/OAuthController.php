@@ -5,10 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Laravel\Socialite\Facades\Socialite;
+use stdClass;
 
 class OAuthController extends Controller
 {
+    private const DONATION_TIERS = [100, 500, 1000, INF];
+    private const GRACE_PERIOD = 5 * 24 * 3600e3;
+
     public function discordRedirect(Request $request)
     {
         return Socialite::driver('discord')->redirect();
@@ -79,6 +84,12 @@ class OAuthController extends Controller
             ]
         );
 
+        $pledgeData = $this->patreonPledgeStatus($accessTokenResponseBody['token_type'], $accessTokenResponseBody['access_token']);
+        $user->patreonData()->updateOrCreate([], [
+            'pledge_tier' => $pledgeData->status->pledgeTier,
+            'perks_expire_at' => $pledgeData->status->perksExpireAt,
+        ]);
+
         return redirect('/me');
     }
     public function patreonUnlink()
@@ -87,5 +98,43 @@ class OAuthController extends Controller
         Auth::user()->accounts()->where('account_name', 'patreon')->delete();
 
         return redirect('/me');
+    }
+
+    private function patreonPledgeStatus(string $type, string $token): stdClass
+    {
+        $res = Http::withHeaders([
+            'Authorization' => "{$type} {$token}",
+        ])->get('https://patreon.com/api/oauth2/v2/identity', [
+            'include' => 'memberships',
+            'fields[member]' => 'patron_status,currently_entitled_amount_cents,next_charge_date'
+        ])->json();
+        $res = json_decode(json_encode($res));
+
+        $donated = false;
+        $data = (object) ['pledgeTier' => 0, 'perksExpireAt' => -1];
+        // Love the absence of ?. in PHP.
+        $pledgeData = isset($res->included)
+            ? (isset($res->included[0])
+                ? $res->included[0]->attributes
+                : null)
+            : null;
+        if (!isset($pledgeData)) {
+            return (object) ['donated' => $donated, 'status' => $data];
+        }
+
+        if (isset($pledgeData->patreon_status)) {
+            $donated = true;
+        }
+
+        if ($pledgeData->patron_status !== 'active_patron') {
+            return (object) ['donated' => $donated, 'status' => $data];
+        }
+
+        // Equivalent of `DONATION_TIERS.findIndex(v => v > spent);` in JS.
+        // Forgive me, Niels.
+        $data->pledgeTier = array_search(current(array_filter($this::DONATION_TIERS, fn ($v) => $v > $pledgeData->currently_entitled_amount_cents)), $this::DONATION_TIERS);
+        $data->perksExpireAt = date('U', strtotime('2018-04-01T20:09:18+00:00')) + $this::GRACE_PERIOD;
+
+        return (object) ['donated' => $donated, 'status' => $data];
     }
 }
