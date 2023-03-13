@@ -156,7 +156,7 @@
 <div class="linked-account">
     <x-icon name="{{ $icon }}" class="linked-account-icon" />
     <div class="linked-account-info">
-        <span>{{ $account ?? 'No account linked' }}</span>
+        <span>{{ $account->name ?? 'No account linked' }}</span>
         <div class="linked-account-actions">
             @if (!isset($account))
                 <a href="{{ EndPro::LINK_ACCOUNT($platform) }}" class="linked-account-action">
@@ -166,10 +166,11 @@
             @endif
             @if (isset($account))
                 <a href="{{ EndPro::UNLINK_ACCOUNT($platform) }}" class="linked-account-action">
-                    <x-icon name="remove" />
+                    <x-icon name="x-circle" />
                     <span>Unlink</span>
                 </a>
             @endif
         </div>
     </div>
+    <div class="linked-account-explainer">{{ $explainer }}</div>
 </div>

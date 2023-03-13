@@ -161,7 +161,8 @@
         <div class="columns">
             <div class="linked-accounts">
                 <h2 class="title">Linked Accounts</h2>
-                <x-account.linked-account platform="patreon" icon="patreon" />
+                <x-account.linked-account platform="patreon" :account="$patreon" icon="patreon"
+                    explainer="Link your Patreon account to benefit from the Replugged Supporter perks, and manage them from here. If you pledged but don't see your perks, use the refresh button." />
             </div>
             <div class="perks-management">
                 <h2 class="title">Replugged Supporter Perks</h2>

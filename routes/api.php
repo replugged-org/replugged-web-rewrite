@@ -37,7 +37,7 @@ Route::prefix('v1')->group(function () {
             Route::redirect('/', '/api/v1/oauth/patreon/redirect');
             Route::get('redirect', 'OAuthController@patreonRedirect');
             Route::get('callback', 'OAuthController@patreonCallback');
-            Route::get('logout', 'OAuthController@patreonLogout');
+            Route::get('unlink', 'OAuthController@patreonUnlink');
         });
     });
 

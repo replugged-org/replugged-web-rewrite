@@ -39,7 +39,7 @@ class OAuthController extends Controller
                 'access_token' => $accessTokenResponseBody['access_token'],
                 'refresh_token' => $accessTokenResponseBody['refresh_token'],
                 'expires_at' => now()->timestamp + $accessTokenResponseBody['expires_in'],
-                'token_type' => 'Bearer'
+                'token_type' => $accessTokenResponseBody['token_type'],
             ]
         );
 
@@ -81,10 +81,10 @@ class OAuthController extends Controller
 
         return redirect('/me');
     }
-    public function patreonLogout()
+    public function patreonUnlink()
     {
         // @php-ignore
-        Auth::user()->accounts()->where('name', 'patreon')->delete();
+        Auth::user()->accounts()->where('account_name', 'patreon')->delete();
 
         return redirect('/me');
     }
