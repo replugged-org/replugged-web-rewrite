@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('account_id')->nullable();
-            $table->string('account_name')->unique();
+            $table->string('account_name');
             $table->string('name')->nullable();
             $table->text('access_token');
             $table->text('refresh_token');

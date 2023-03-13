@@ -119,7 +119,7 @@
                     <x-account.profile :user="$user" />
                     <x-button to="{{ RoutePro::EDIT_ME() }}">Edit perks</x-button>
                 </div>
-            @endisset
+            @endif
         </div>
     </main>
 @endsection
