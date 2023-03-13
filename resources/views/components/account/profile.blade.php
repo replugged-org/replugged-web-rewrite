@@ -30,18 +30,6 @@
         margin-top: -46px;
     }
 
-    .badges {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 16px;
-        flex-wrap: wrap;
-        gap: 6px;
-    }
-
-    .badge {
-        width: 18px;
-        height: 18px;
-    }
 
     .props {
         font-size: 20px;
@@ -99,7 +87,7 @@
     <div class="profile-section">
         <div class="decorations">
             <x-images.avatar class="profile-avatar" />
-            {{-- TODO: BADGES --}}
+            <x-account.badges :perks="$user->patreon_data" :flags="$user->flags" />
         </div>
         <div class="props">
             <span>{{ $user->name }}</span><span class="profile-discriminator">#{{ $user->discriminator }}</span>
