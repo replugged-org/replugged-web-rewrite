@@ -79,7 +79,7 @@ class RoutePro
             "BACKOFFICE_BOT_TAGS" => '/backoffice/bot/tags',
 
             // External links
-            "DICKSWORD" => 'https://discord.gg/replugged',
+            "DICKSWORD" => 'https://discord.gg/HnYFUhv4x4',
             "GITHUB" => 'https://github.com/replugged-org/replugged',
             "TRANSLATIONS" => 'https://i18n.replugged.dev/projects/replugged/replugged',
             "PATREON" => 'https://google.com',
