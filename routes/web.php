@@ -33,4 +33,5 @@ Route::post('me/edit', 'UserController@update_perks')->middleware('auth');
 Route::middleware('auth')->prefix('backoffice')->name('backoffice.')->group(function () {
     Route::redirect('/', '/backoffice/users');
     Route::get('users', 'BackofficeController@showUsers')->name('users');
+    Route::get('users/{id}', 'BackofficeController@showEditUsers')->name('users.edit');
 });
