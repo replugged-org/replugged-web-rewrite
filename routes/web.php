@@ -29,3 +29,8 @@ Route::view('download', 'download')->name('download');
 Route::get('me', 'UserController@me')->name('me')->middleware('auth');
 Route::get('me/edit', 'UserController@editMe')->name('me')->middleware('auth');
 Route::post('me/edit', 'UserController@update_perks')->middleware('auth');
+
+Route::middleware('auth')->prefix('backoffice')->name('backoffice.')->group(function () {
+    Route::redirect('/', '/backoffice/users');
+    Route::get('users', 'BackofficeController@showUsers')->name('users');
+});
