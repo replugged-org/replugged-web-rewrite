@@ -73,4 +73,6 @@
         <x-layout.footer></x-layout.footer>
 
     </div>
+
+    @stack('body-js')
 </body>
