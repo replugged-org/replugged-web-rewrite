@@ -19,6 +19,9 @@ class PatreonData extends Model
         'badge',
         'badge_color',
         'badge_title',
+        'guild_badge_id',
+        'guild_badge',
+        'guild_badge_title',
         'pledge_tier',
         'perks_expire_at',
     ];
