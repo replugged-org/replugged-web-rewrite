@@ -57,10 +57,8 @@ doing one extra query to get this working properly. --}}
 @section('content')
     <div class="backoffice-container">
         <x-backoffice.sidebar :users="$userCount" />
-        <div class="backoffice-content">
-            <main>
-                @yield('b-content')
-            </main>
+        <div class="backoffice-contents">
+            @yield('b-content')
         </div>
     </div>
 @endsection
