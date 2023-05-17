@@ -29,7 +29,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         URL::forceRootUrl(env('APP_URL'));
-        URL::forceScheme('https');
 
         // Hack to give Blade files access to their own pre-compilation paths
         // and filenames.
