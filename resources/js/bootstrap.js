@@ -1,3 +1,14 @@
+// Waaah, where is Alpine coming from?! For some reason, despite my best
+// attempts, doing a simple setup of `import`ing Alpine and then assigning it to
+// the window did not work. Something about `*.inherits is undefined`. No idea.
+
+// Debug directive for logging any data managed by Alpine. Use as `x-log`.
+Alpine.directive("log", (_, { expression }, { evaluate }) => {
+    console.log(evaluate(expression));
+});
+// Liftoff!
+Alpine.start();
+
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

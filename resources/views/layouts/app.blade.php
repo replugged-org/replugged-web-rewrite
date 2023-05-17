@@ -25,6 +25,10 @@
     @stack('css')
 
     <!-- Scripts -->
+    @stack('head-js')
+
+    {{-- I know, I know. --}}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.1/dist/cdn.min.js"></script>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </html>
