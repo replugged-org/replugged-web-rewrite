@@ -25,17 +25,17 @@ Route::prefix('v1')->group(function () {
         return redirect("/api/v1/oauth/discord/logout?{$params}");
     });
 
-    Route::prefix('store/{type}')->group(function () {
-        Route::get("/", function (string $type) {
+    Route::prefix('store')->group(function () {
+        Route::get("{type}", function (string $type) {
             return "would output entire list of {$type}s";
+        })->whereIn('type', ['plugins', 'themes']);
+        Route::get("{id}.asar", function (string $id) {
+            return "would download asar file of $id";
         });
-        Route::get("{id}.asar", function (string $type, string $id) {
-            return "would download asar file of $id which is of type $type";
+        Route::get("{id}", function (string $id) {
+            return "would fetch manifest of $id";
         });
-        Route::get("{id}", function (string $type, string $id) {
-            return "would fetch manifest of $id which is of type $type";
-        });
-    })->whereIn('type', ['plugin', 'theme']);
+    });
 
     Route::prefix('oauth')->group(function () {
         Route::prefix('discord')->group(function () {
