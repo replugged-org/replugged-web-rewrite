@@ -33,28 +33,23 @@
 {{-- No modals? :trollformation: --}}
 @push('body-js')
     <script>
-        let input = document.getElementById("id-input");
-        let submit = document.getElementById("submit-edit");
-        let notice = document.getElementById("error-notice");
-
-        input.addEventListener("input", () => {
-            if (isNaN(input.value))
-                notice.style.display = "block";
-            else
-                notice.style.display = "none";
-
-            submit.href = `/backoffice/users/${input.value}`;
-        })
+        function validate(e) {
+            if (isNaN(e)) return true;
+            else return false;
+        }
     </script>
 @endpush
 
 @section('b-content')
     <h1 class="title">Manage users</h1>
-    <x-notice id="error-notice" color="red" style="display: none">
-        Invalid input!
-    </x-notice>
-    <div class="toolbar">
-        <input type="text" placeholder="User ID" class="text-field" id="id-input" />
-        <x-button id="submit-edit" to="{{ RoutePro::BACKOFFICE_USERS() }}">Edit User</x-button>
+    {{-- TODO(lexisother): Any nicer way than using `$watch`? --}}
+    <div x-data="{ value: '', err: false }" x-init="$watch('value', v => err = validate(v))">
+        <x-notice x-show="err" id="error-notice" color="red">
+            Invalid input!
+        </x-notice>
+        <div class="toolbar">
+            <input x-model="value" type="text" placeholder="User ID" class="text-field" id="id-input" />
+            <x-button id="submit-edit" to="{{ RoutePro::BACKOFFICE_USERS() }}">Edit User</x-button>
+        </div>
     </div>
 @endsection
