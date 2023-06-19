@@ -24,4 +24,21 @@ class StoreController extends Controller
         }
         return response()->download($asarPath);
     }
+
+    public function listItems(Request $request, string $type)
+    {
+        $manifestPath = storage_path("addons/manifests");
+        $files = File::files($manifestPath);
+
+        // Filter out the types we're not interested in listing
+        $files = array_filter($files, function ($f) use ($type) {
+            $manifest = (object) File::json($f);
+            return $manifest->type === "replugged-$type";
+        });
+
+        // Turn the SplFileInfo[] into an array of manifests
+        $manifests = array_map(fn ($f) => $f = File::json($f), $files);
+
+        return response()->json($manifests);
+    }
 }
