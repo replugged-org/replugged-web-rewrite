@@ -26,15 +26,14 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::prefix('store')->group(function () {
-        Route::get("{type}", function (string $type) {
-            return "would output entire list of {$type}s";
-        })->whereIn('type', ['plugins', 'themes']);
-        Route::get("{id}.asar", function (string $id) {
-            return "would download asar file of $id";
+        Route::get('list/{type}', function (string $type) {
+            return response()->json("nope", 401);
         });
-        Route::get("{id}", function (string $id) {
-            return "would fetch manifest of $id";
-        });
+
+        // HACK: Why the fuck does it fall through to the last route without this regex match?
+        Route::get('{id}.asar', 'StoreController@getAsar')->where('id', '(.*)');
+
+        Route::get('{id}', 'StoreController@getManifest');
     });
 
     Route::prefix('oauth')->group(function () {
