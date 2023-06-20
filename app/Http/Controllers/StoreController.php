@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class StoreController extends Controller
 {
@@ -37,8 +41,17 @@ class StoreController extends Controller
         });
 
         // Turn the SplFileInfo[] into an array of manifests
-        $manifests = array_map(fn ($f) => $f = File::json($f), $files);
+        $manifests = array_map(fn ($f) => $f = (object) File::json($f), $files);
 
-        return response()->json($manifests);
+        $results = $this->paginate($manifests, $items, null, ["path" => "/{$request->path()}"]);
+
+        return response()->json($results);
+    }
+
+    private function paginate(Collection|array $items, $perPage = 10, $page = null, $options = []): LengthAwarePaginator
+    {
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
 }
