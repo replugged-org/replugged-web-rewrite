@@ -30,8 +30,11 @@ class RPStoreService
         return $asarPath;
     }
 
-    public function listItems($type, $query)
+    public function listItems($type, $query = "")
     {
+        if (Str::endsWith($type, "s"))
+            $type = rtrim($type, "s");
+
         $manifestPath = storage_path("addons/manifests");
         $files = File::files($manifestPath);
 

@@ -9,6 +9,13 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class StoreController extends Controller
 {
+    public function showListing(RPStoreService $store, string $type)
+    {
+        $manifests = $store->listItems($type);
+        $addons = $store->paginate($manifests, 10, null, ["path" => "/store/$type"]);
+        return view('store', ['kind' => $type, 'addons' => $addons]);
+    }
+
     public function getManifest(Request $request, RPStoreService $store, string $id): JsonResponse|array
     {
         $manifest = $store->getManifest($id);
