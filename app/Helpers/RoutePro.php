@@ -84,7 +84,8 @@ class RoutePro
             "TRANSLATIONS" => 'https://i18n.replugged.dev/projects/replugged/replugged',
             "PATREON" => 'https://google.com',
         ];
-        $route = $Routes[$routeName];
+
+        $route = $Routes[$routeName] ?? null;
 
         if (!$route) throw new Exception("Route {$routeName} was not found.");
 
