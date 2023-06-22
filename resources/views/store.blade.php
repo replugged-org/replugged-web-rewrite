@@ -107,15 +107,30 @@
     </style>
 @endpush
 
+@push('head-js')
+    <script>
+        function storeManager() {
+            return {
+                installAddon(id) {
+                    window.storeUtils.installAddon(id, this.updateCard);
+                },
+                updateCard() {
+                    console.warn("IMPLEMENT UPDATING OF THE CARD WHEN THE PLUGIN IS INSTALLED!!!")
+                }
+            }
+        }
+    </script>
+@endpush
+
 @section('content')
     <main class="main">
         <h1 class="header">Replugged {{ ucfirst($kind) }}</h1>
-        <div class="grid">
+        <div class="grid" x-data="storeManager()">
             @if (count($addons) > 0)
-                <input class="text-field search" type="text" placeholder="Search" />
+                <input class="text-field search" type="text" placeholder="Search"/>
             @endif
             @foreach ($addons as $addon)
-                <x-store.item :item="$addon" />
+                <x-store.item :item="$addon"/>
             @endforeach
         </div>
         {{ $addons->links() }}

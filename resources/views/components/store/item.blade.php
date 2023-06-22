@@ -10,9 +10,9 @@
 @props(['item'])
 
 @php
-// Of course, I'd much more prefer to have this elsewhere, but who really cares?
-use App\Services\RPStoreService;
-$item->STORE_AUTHORS_STRING = RPStoreService::formatAuthors($item->author);
+    // Of course, I'd much more prefer to have this elsewhere, but who really cares?
+    use App\Services\RPStoreService;
+    $item->STORE_AUTHORS_STRING = RPStoreService::formatAuthors($item->author);
 @endphp
 
 <a class="linkWrap" href={{ RoutePro::STORE_ITEM($item->id) }}>
@@ -24,6 +24,7 @@ $item->STORE_AUTHORS_STRING = RPStoreService::formatAuthors($item->author);
         </div>
         <div class="item-button">
             <x-button to="{{ RoutePro::STORE_ITEM($item->id) }}" link>Details</x-button>
+            <x-button @click="installAddon('{{ $item->id }}')">Install</x-button>
         </div>
     </div>
 </a>
