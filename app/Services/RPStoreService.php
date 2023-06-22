@@ -85,4 +85,21 @@ class RPStoreService
         $items = $items instanceof Collection ? $items : Collection::make($items);
         return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
     }
+
+    static function formatAuthors(array $authors): string
+    {
+        // Quick HACK for turning the authors into an array despite being an object so we can do the array_map below
+        if (!isset($authors[0])) {
+            $authors = array($authors);
+        }
+        $authors = array_map(fn ($k) => $k['name'], $authors);
+        $len = count($authors);
+
+        if ($len === 1) return "$authors[0]";
+        if ($len === 2) return "$authors[0] and $authors[1]";
+        if ($len === 3) return "$authors[0], $authors[1], and $authors[2]";
+
+        $len -= 3;
+        return "$authors[0], $authors[1], $authors[2], and $len more";
+    }
 }

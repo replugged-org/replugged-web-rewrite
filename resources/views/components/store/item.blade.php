@@ -9,12 +9,17 @@
 
 @props(['item'])
 
+@php
+// Of course, I'd much more prefer to have this elsewhere, but who really cares?
+use App\Services\RPStoreService;
+$item->STORE_AUTHORS_STRING = RPStoreService::formatAuthors($item->author);
+@endphp
 
 <a class="linkWrap" href={{ RoutePro::STORE_ITEM($item->id) }}>
     <div class="item">
         <div>
             <h2 class="item-header">{{ $item->name }}</h2>
-            <p class="item-author">by your mother</p>
+            <p class="item-author">by {{ $item->STORE_AUTHORS_STRING }}</p>
             <p class="item-description">{{ $item->description }}</p>
         </div>
         <div class="item-button">
