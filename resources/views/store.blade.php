@@ -102,6 +102,7 @@
 
         .scroll-buttons {
             display: flex;
+            justify-content: center;
             gap: 8px;
         }
     </style>
