@@ -127,12 +127,18 @@
         <h1 class="header">Replugged {{ ucfirst($kind) }}</h1>
         <div class="grid" x-data="storeManager()">
             @if (count($addons) > 0)
-                <input class="text-field search" type="text" placeholder="Search"/>
+                <form style="grid-column-end: -1;">
+                    <input class="text-field search" type="search" name="q" placeholder="Search" />
+                </form>
+                @foreach ($addons as $addon)
+                    <x-store.item :item="$addon"/>
+                @endforeach
+            @else
+                <p class="full-grid">No items found.</p>
             @endif
-            @foreach ($addons as $addon)
-                <x-store.item :item="$addon"/>
-            @endforeach
         </div>
-        {{ $addons->links() }}
+        @if (count($addons) > 0)
+            {{ $addons->links() }}
+        @endif
     </main>
 @endsection

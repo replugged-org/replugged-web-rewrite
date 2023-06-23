@@ -9,9 +9,10 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class StoreController extends Controller
 {
-    public function showListing(RPStoreService $store, string $type)
+    public function showListing(Request $request, RPStoreService $store, string $type)
     {
-        $manifests = $store->listItems($type);
+        $query = $request->get('q', '');
+        $manifests = $store->listItems($type, $query);
         $addons = $store->paginate($manifests, 24, null, ["path" => "/store/$type"]);
         return view('store', ['kind' => $type, 'addons' => $addons]);
     }
