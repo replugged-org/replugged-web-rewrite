@@ -162,7 +162,8 @@
             <a class="nav-link" href="{{ route('installation') }}">Installation</a>
         @endif
         @if (Route::has('store'))
-            <a class="nav-link" href="{{ route('store') }}">Store</a>
+            <a class="nav-link" href="{{ RoutePro::STORE_PLUGINS() }}">Plugins</a>
+            <a class="nav-link" href="{{ RoutePro::STORE_THEMES() }}">Themes</a>
         @endif
         @if (Route::has('contributors'))
             <a class="nav-link" href="{{ route('contributors') }}">Contributors</a>

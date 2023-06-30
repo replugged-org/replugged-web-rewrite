@@ -17,7 +17,7 @@ Route::view('/', 'home')->name('home');
 
 Route::prefix('store')->group(function () {
     // By default, go to plugin listing
-    Route::redirect('/', '/store/plugins');
+    Route::redirect('/', '/store/plugins')->name('store');
 
     Route::get('/{type}', 'StoreController@showListing')->whereIn('type', ['plugins', 'themes']);
 });

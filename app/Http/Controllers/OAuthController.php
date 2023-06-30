@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 use Laravel\Socialite\Facades\Socialite;
 use stdClass;
 
+// TODO: Separation of concerns
 class OAuthController extends Controller
 {
     private const DONATION_TIERS = [100, 500, 1000, INF];
