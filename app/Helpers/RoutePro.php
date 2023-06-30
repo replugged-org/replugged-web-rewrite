@@ -40,6 +40,7 @@ class RoutePro
             "STORE_VERIFICATION" => '/store/forms/verification',
             "STORE_HOSTING" => '/store/forms/hosting',
             "STORE_COPYRIGHT" => '/store/copyright',
+            "STORE_ITEM" => fn ($id) => "/store/$id",
 
             "DOCS" => '/docs',
             "DOCS_ITEM" => function ($cat, $doc) {
@@ -84,7 +85,8 @@ class RoutePro
             "TRANSLATIONS" => 'https://i18n.replugged.dev/projects/replugged/replugged',
             "PATREON" => 'https://google.com',
         ];
-        $route = $Routes[$routeName];
+
+        $route = $Routes[$routeName] ?? null;
 
         if (!$route) throw new Exception("Route {$routeName} was not found.");
 

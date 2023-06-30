@@ -13,10 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// TODO: Move this to `home` view, name the route
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::view('/', 'home')->name('home');
+
+Route::prefix('store')->group(function () {
+    // By default, go to plugin listing
+    Route::redirect('/', '/store/plugins')->name('store');
+
+    Route::get('/{type}', 'StoreController@showListing')->whereIn('type', ['plugins', 'themes']);
+});
 
 Route::get('contributors', "StatsController@index")->name('contributors');
 

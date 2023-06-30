@@ -25,6 +25,15 @@ Route::prefix('v1')->group(function () {
         return redirect("/api/v1/oauth/discord/logout?{$params}");
     });
 
+    Route::prefix('store')->group(function () {
+        Route::get('list/{type}', 'StoreController@listItems');
+
+        // HACK: Why the fuck does it fall through to the last route without this regex match?
+        Route::get('{id}.asar', 'StoreController@getAsar')->where('id', '(.*)');
+
+        Route::get('{id}', 'StoreController@getManifest');
+    });
+
     Route::prefix('oauth')->group(function () {
         Route::prefix('discord')->group(function () {
             Route::redirect('/', '/api/v1/oauth/discord/redirect');
