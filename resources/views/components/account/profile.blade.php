@@ -82,6 +82,15 @@
     }
 </style>
 
+@props(['user'])
+
+@php
+        $result = "<span>";
+        if ($user->discriminator === "0") $result .= "@";
+        $result .= "$user->name</span>";
+        if ($user->discriminator !== "0") $result .= "<span class='profile-discriminator'>#$user->discriminator</span>";
+@endphp
+
 <div class="profile-container">
     <div class="banner"></div>
     <div class="profile-section">
@@ -90,7 +99,7 @@
             <x-account.badges :perks="$user->patreon_data" :flags="$user->flags" />
         </div>
         <div class="props">
-            <span>{{ $user->name }}</span><span class="profile-discriminator">#{{ $user->discriminator }}</span>
+            {!! $result !!}
         </div>
     </div>
     <div class="profile-section">

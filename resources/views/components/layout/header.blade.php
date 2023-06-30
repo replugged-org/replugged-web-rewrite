@@ -136,8 +136,8 @@
 
 @props(['opened'])
 
-{{-- TODO: See if there's a way that doesn't need attribute merging --}}
 @php
+    // TODO: See if there's a way that doesn't need attribute merging
     $headerClasses = $opened ?? false ? 'header-container opened' : 'header-container';
 
     // Test auth
@@ -150,11 +150,21 @@
     if (Auth::check()) {
         $isStaff = Auth::user()->flags & \App\Models\User::FLAG_STAFF;
     }
+
+    /** @see ../contributors/contributor.blade.php#L31-L38 */
+    $user = Auth::user();
+    if ($user) {
+        $result = "<div class='username'>";
+        if ($user->discriminator === "0") $result .= "@";
+        $result .= $user->name;
+        if ($user->discriminator !== "0") $result .= "<span class='discriminator'>#$user->discriminator</span>";
+        $result .= "</div>";
+    }
 @endphp
 
 <header {{ $attributes->merge(['class' => $headerClasses]) }}>
     <a class="logo" href="{{ route('home') }}">
-        <x-images.replugged class='plug' />
+        <x-images.replugged class='plug'/>
     </a>
 
     <nav class="nav">
@@ -176,13 +186,12 @@
             <x-button to="/api/v1/login">Login with Discord</x-button>
         @else
             <div class="profile">
-                <x-images.avatar />
+                <x-images.avatar/>
                 <div class="details">
                     <div class="name">
-                        <div class="username">{{ Auth::user()->name }}<span
-                                class="discriminator">#{{ Auth::user()->discriminator }}</span></div>
+                        {!! $result !!}
                         @if ($isStaff)
-                            <x-icon name="badges.staff" class="badge" />
+                            <x-icon name="badges.staff" class="badge"/>
                         @endif
                     </div>
                     <div>
