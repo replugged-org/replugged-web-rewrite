@@ -1,12 +1,31 @@
-// Waaah, where is Alpine coming from?! For some reason, despite my best
-// attempts, doing a simple setup of `import`ing Alpine and then assigning it to
-// the window did not work. Something about `*.inherits is undefined`. No idea.
+import Alpine from "alpinejs";
+window.Alpine = Alpine;
 
 // Debug directive for logging any data managed by Alpine. Use as `x-log`.
 Alpine.directive("log", (_, { expression }, { evaluate }) => {
     console.log(evaluate(expression));
 });
-// Liftoff!
+
+Alpine.store("toasts", {
+    counter: 0,
+    list: [],
+    createToast(message, type = "info") {
+        const index = this.list.length;
+        let totalVisible =
+            this.list.filter((toast) => toast.visible).length + 1;
+        this.list.push({
+            id: this.counter++,
+            message,
+            type,
+            visible: true,
+        });
+        setTimeout(() => this.destroyToast(index), 2000 * totalVisible);
+    },
+    destroyToast(index) {
+        this.list[index].visible = false;
+    },
+});
+
 Alpine.start();
 
 /**
@@ -16,6 +35,7 @@ Alpine.start();
  */
 
 import axios from "axios";
+
 window.axios = axios;
 
 window.axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
