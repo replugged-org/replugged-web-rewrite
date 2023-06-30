@@ -113,7 +113,7 @@
         function storeManager() {
             return {
                 installAddon(id) {
-                    window.storeUtils.installAddon(id, this.updateCard);
+                    window.storeUtils.installAddon(id, this.updateCard, this.$store.toasts);
                 },
                 updateCard() {
                     console.warn("IMPLEMENT UPDATING OF THE CARD WHEN THE PLUGIN IS INSTALLED!!!")

@@ -5,6 +5,7 @@ const toastIdMap = new Map<string, string>();
 export function installAddon(
   identifier: string,
   updateAddonList?: () => Promise<void>,
+  toasts: ToastStore,
 ): Promise<void> {
   if (toastIdMap.has(identifier)) {
     // Dismiss any existing toasts for the same addon
@@ -12,6 +13,7 @@ export function installAddon(
   }
 
   // const toastId = toast.loading("Connecting...");
+  toasts.createToast("Connecting...", "info");
   console.log("Connecting...")
   // toastIdMap.set(identifier, toastId);
 
@@ -34,6 +36,7 @@ export function installAddon(
           //     id: toastId,
           //   },
           // );
+          toasts.createToast("Connected to replugged, please confirm the addon installation in Discord.", "info");
           console.log("Connected to Replugged, please confirm the addon installation in Discord.");
           lastToast = Date.now();
         }, waitToToast);
@@ -48,6 +51,7 @@ export function installAddon(
               // toast.success(`${res.manifest.name} was successfully installed.`, {
               //   id: toastId,
               // });
+                toasts.createToast(`${res.manifest.name} was successfully installed.`, "success");
                 console.log(`${res.manifest.name} was successfully installed.`);
 
               await updateAddonList?.();
@@ -56,18 +60,21 @@ export function installAddon(
               // toast.error(`${res.manifest.name} is already installed.`, {
               //   id: toastId,
               // });
+                toasts.createToast(`${res.manifest.name} is already installed.`, "error");
                 console.log(`${res.manifest.name} is already installed.`);
               break;
             case "FAILED":
               // toast.error("Failed to get addon info.", {
               //   id: toastId,
               // });
+                toasts.createToast("Failed to get addon info.", "error")
                 console.log("Failed to get addon info.")
               break;
             case "CANCELLED":
               // toast.error("Installation cancelled.", {
               //   id: toastId,
               // });
+                toasts.createToast("Installation cancelled.", "error")
                 console.log("Installation cancelled.")
               break;
             case "UNREACHABLE":
@@ -77,6 +84,7 @@ export function installAddon(
               //     id: toastId,
               //   },
               // );
+                toasts.createToast("Could not connect to Replugged, please make sure Discord is open with the latest version of Replugged installed and try again.", "error");
                 console.log("Could not connect to Replugged, please make sure Discord is open with the latest version of Replugged installed and try again.")
               break;
           }
