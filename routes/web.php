@@ -24,7 +24,7 @@ Route::prefix('store')->group(function () {
 
 Route::get('contributors', "StatsController@index")->name('contributors');
 
-Route::get('installation', 'DocsController@installation');
+Route::view('download', 'download')->name('download');
 
 Route::get('me', 'UserController@me')->name('me')->middleware('auth');
 Route::get('me/edit', 'UserController@editMe')->name('me')->middleware('auth');
