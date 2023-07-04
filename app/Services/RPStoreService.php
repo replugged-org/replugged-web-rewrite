@@ -36,6 +36,10 @@ class RPStoreService
             $type = rtrim($type, "s");
 
         $manifestPath = storage_path("addons/manifests");
+        if (!File::exists($manifestPath)) {
+            return [];
+        }
+
         $files = File::files($manifestPath);
 
         // Filter out the types we're not interested in listing
