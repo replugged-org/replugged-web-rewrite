@@ -7,4 +7,7 @@
 
 @props(['name', 'class'])
 
-<?= Icons::get($name, $class ?? null) ?>
+<div {{ $attributes }}>
+    <?= Icons::get($name, $class ?? null) ?>
+</div>
+
