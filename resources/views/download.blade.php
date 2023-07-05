@@ -78,6 +78,13 @@
            padding: 10px;
            background-color: rgba(240, 178, 50, 0.1);
        }
+       .manual h2 {
+           margin-bottom: 20px;
+       }
+
+       .manual p {
+           margin: 16px 0px;
+       }
    </style>
 @endpush
 
@@ -88,7 +95,7 @@
                 <h1 class="title">Download Replugged</h1>
                 <div x-data="downloadData" class="download-container">
                     <div class="tabs">
-                        <template x-for="os in operatingSystems">
+                        <template x-for="os in operatingSystems" :key="os.os">
                             <button
                                 @click="selectedOS = os"
                                 class="tab button"
@@ -99,7 +106,7 @@
                     </div>
                     <div class="divider"></div>
                     <div class="buttons">
-                        <template x-for="file in selectedOS.files">
+                        <template x-for="file in selectedOS.files" :key="file.file">
                             {{-- I'd love to use x-button here but I do not think that'll play well. --}}
                             <a
                                 class="button"
@@ -115,6 +122,71 @@
                     </template>
                 </div>
             </div>
+        </div>
+        <div class="wrapper">
+            <section id="manual" class="manual">
+                <h2>Manual Installation</h2>
+                <h3>Prerequisites</h3>
+                <p>
+                    <ul>
+                        <li>
+                            <a href="https://git-scm.com/downloads" target="_blank">
+                                Git
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://nodejs.org/en" target="_blank">
+                                Node.js
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://pnpm.io/installation" target="_blank">pnpm</a>
+                            : <x-code>npm install -g pnpm</x-code>
+                        </li>
+                        <li>
+                            <a href="https://discord.com/download" target="_blank">
+                                Discord
+                            </a>
+                        </li>
+                    </ul>
+                </p>
+                <h3>Installation</h3>
+                <p>
+                    <ol>
+                        <li>
+                            Clone the repository: <x-code>git clone https://github.com/replugged-org/replugged</x-code>
+                        </li>
+                        <li>
+                            <code>cd</code> into the repository: <x-code>cd replugged</x-code>
+                        </li>
+                        <li>
+                            Install dependencies: <x-code>pnpm i</x-code>
+                        </li>
+                        <li>
+                            Build Replugged: <x-code>pnpm run bundle</x-code>
+                        </li>
+                        <li>Fully quit Discord</li>
+                        <li>
+                            Plug into Discord: <x-code>pnpm run plug --production</x-code>
+                            <br />
+                            If you want to specify a specific Discord version to plug into, you can add the platform as
+                            an argument: <x-code>pnpm run plug --production [stable|ptb|canary|development]</x-code>
+                        </li>
+                        <li>Reopen Discord</li>
+                    </ol>
+                    You can verify it's installed by going into Discord settings and looking for the
+                    "Replugged" tab.
+                </p>
+                <h3>Troubleshooting</h3>
+                <p>
+                    If you're having issues, please reinstall Discord and try steps 5-7 again.
+                    <br />
+                    <br />
+                    Still having issues? Please <a href="{{ RoutePro::DICKSWORD() }}" target="_blank">join our Discord</a>
+                    and create a thread in <a href="https://discord.com/channels/1000926524452647132/1006383180309352538" target="_blank">#support</a>
+                    with any errors you're getting and any other information you think might be helpful.
+                </p>
+            </section>
         </div>
     </main>
 @endsection
