@@ -131,9 +131,9 @@
                 <p class="motto">Enhance your Discord experience with new features and looks. Make your Discord truly yours.
                 </p>
                 <div class="header-buttons">
-                    <x-button to="{{ RoutePro::INSTALLATION() }}">
+                    <x-button to="{{ RoutePro::DOWNLOAD() }}">
                         <x-icon name="zap" class="icon" />
-                        <span>Installation</span>
+                        <span>Download</span>
                     </x-button>
                     <x-button to="{{ RoutePro::DICKSWORD() }}" link>
                         <x-icon name="message-circle" class="icon" />
@@ -182,9 +182,9 @@
                 <h2 class="home-section-title">Make your Discord spicier</h2>
                 <p class="home-section-description">Stop limiting yourself to what Discord gives you. Get Replugged!</p>
                 <div class="buttons">
-                    <x-button to="{{ RoutePro::INSTALLATION() }}">
+                    <x-button to="{{ RoutePro::DOWNLOAD() }}">
                         <x-icon name="zap" class="icon" />
-                        <span>Installation</span>
+                        <span>Download</span>
                     </x-button>
                     <x-button to="{{ RoutePro::DICKSWORD() }}" link>
                         <x-icon name="message-circle" class="icon" />

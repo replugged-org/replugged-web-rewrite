@@ -168,8 +168,8 @@
     </a>
 
     <nav class="nav">
-        @if (Route::has('installation'))
-            <a class="nav-link" href="{{ route('installation') }}">Installation</a>
+        @if (Route::has('download'))
+            <a class="nav-link" href="{{ route('download') }}">Download</a>
         @endif
         @if (Route::has('store'))
             <a class="nav-link" href="{{ RoutePro::STORE_PLUGINS() }}">Plugins</a>

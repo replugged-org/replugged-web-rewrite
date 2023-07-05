@@ -27,7 +27,7 @@ class RoutePro
             "CONTRIBUTORS" => '/contributors',
             "STATS" => '/stats',
             "BRANDING" => '/branding',
-            "INSTALL" => '/install',
+            "DOWNLOAD" => '/download',
             "FAQ" => '/faq',
 
             "STORE" => '/store',
