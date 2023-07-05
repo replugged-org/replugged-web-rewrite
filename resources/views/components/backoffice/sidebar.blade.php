@@ -96,7 +96,7 @@
     <div class="backoffice-sidebar-inner">
         <h1>Administration</h1>
         <a class="backoffice-sidebar-item {{ activeOrNot('backoffice.users') }}"
-            href="{{ RoutePro::BACKOFFICE_USERS() }}">
+           href="{{ RoutePro::BACKOFFICE_USERS() }}">
             <x-icon name="smile" />
             <span>Users ({{ $users }})</span>
         </a>

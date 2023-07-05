@@ -66,4 +66,8 @@
             </x-button>
         </div>
     </div>
+
+    @foreach($users as $user)
+        <x-backoffice.user :user="$user" />
+    @endforeach
 @endsection
