@@ -1,5 +1,8 @@
 import Alpine from "alpinejs";
-window.Alpine = Alpine;
+import Clipboard from "@ryangjchandler/alpine-clipboard";
+
+// Provides $clipboard and x-clipboard
+Alpine.plugin(Clipboard);
 
 // Debug directive for logging any data managed by Alpine. Use as `x-log`.
 Alpine.directive("log", (_, { expression }, { evaluate }) => {
@@ -26,7 +29,8 @@ Alpine.store("toasts", {
     },
 });
 
-Alpine.start();
+window.Alpine = Alpine;
+window.Alpine.start();
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
