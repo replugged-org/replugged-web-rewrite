@@ -167,3 +167,85 @@ hr {
 #app::-webkit-scrollbar {
     border-left: 1px solid var(--background-tertiary);
 }
+
+/* Toast stuff {{{ */
+/* Colours */
+.info {
+    background-image: linear-gradient(to right, #3b82f6, #2563eb);
+}
+.success {
+    background-image: linear-gradient(to right, #10b981, #059669);
+}
+.warning {
+    background-image: linear-gradient(to right, #fbbf24, #f59e0b);
+}
+.error {
+    background-image: linear-gradient(to right, #ef4444, #ec4899);
+}
+
+/* The container holding the toasts */
+.toast-container {
+    overflow-x: hidden;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 1rem;
+    max-width: 24rem;
+}
+
+/* The toast itself */
+.toast {
+    display: flex;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    background-color: #111827;
+    color: #ffffff;
+    align-items: center;
+    border-radius: 0.25rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Animations */
+.transform {
+    --translate-x:0;
+    --translate-y:0;
+    --rotate:0;
+    --skew-x:0;
+    --skew-y:0;
+    --scale-x:1;
+    --scale-y:1;
+    transform:
+        translateX(var(--translate-x)) translateY(var(--translate-y))
+        rotate(var(--rotate))
+        skewX(var(--skew-x)) skewY(var(--skew-y))
+        scaleX(var(--scale-x)) scaleY(var(--scale-y));
+}
+.transition {
+    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+}
+.ease-in {
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+.ease-out {
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.enter-start {
+    --translate-y: 0.5rem;
+    opacity: 0;
+}
+.enter-end {
+    opacity: 1;
+}
+.leave-start {
+    --translate-x: 0;
+    opacity: 1;
+}
+.leave-end {
+    --translate-x: 100%;
+    opacity: 0;
+}
+
+/* }}} */
