@@ -129,10 +129,22 @@
         }
 
         .b {
-            display: none;
+            display: none !important;
         }
     }
 </style>
+
+<script>
+    const menuManager = {
+        opened: false,
+        toggle() {
+            this.opened = !this.opened;
+        },
+        close() {
+            this.opened = false;
+        }
+    }
+</script>
 
 @props(['opened'])
 
@@ -162,7 +174,7 @@
     }
 @endphp
 
-<header {{ $attributes->merge(['class' => $headerClasses]) }}>
+<header {{ $attributes->merge(['class' => $headerClasses]) }} x-data="menuManager" :class="{ 'opened': opened }">
     <a class="logo" href="{{ route('home') }}">
         <x-images.replugged class='plug'/>
     </a>
@@ -205,4 +217,7 @@
                 </div>
             </div>
         @endguest
+    </div>
+
+    <x-layout.hamburger></x-layout.hamburger>
 </header>
