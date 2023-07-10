@@ -96,8 +96,12 @@
     </script>
 @endpush
 
+@php
+// TODO: THIS IS A TEMPORARY SOLUTION!!! PLEASE, FOR THE LOVE OF GOD, START USING THE REST USER IN AS MANY PLACES AS POSSIBLE!!!
+$restUser = $user->format();
+@endphp
+
 @section('b-content')
-    {{-- TODO: Set up a new route for this --}}
     <h3 class="title">Editing User - {{ $user->name }}#{{ $user->discriminator }}</h3>
     <form enctype="multipart/form-data" action="{{ RoutePro::BACKOFFICE_USERS_MANAGE($user->discord_id) }}" method="POST">
         @csrf
@@ -108,7 +112,14 @@
         </div>
 
         <div id="manage" style="display: block;">
-            # TODO: Switch components
+            {{-- TODO: Implement functionality --}}
+            <x-form.switch name="badgeDeveloper" label="Developer" value="{{ $restUser->badges->developer }}" />
+            <x-form.switch name="badgeStaff" label="Staff" value="{{ $restUser->badges->staff }}" />
+            <x-form.switch name="badgeSupport" label="Support" value="{{ $restUser->badges->support }}" />
+            <x-form.switch name="badgeContributor" label="Contributor" value="{{ $restUser->badges->contributor }}" />
+            <x-form.switch name="badgeHunter" label="Hunter" value="{{ $restUser->badges->hunter }}" />
+            <x-form.switch name="badgeEarly" label="Early" value="{{ $restUser->badges->early }}" />
+            <x-form.switch name="badgeTranslator" label="Translator" value="{{ $restUser->badges->translator }}" />
         </div>
         <div id="perks" style="display: none;">
             <div class="form-field">
