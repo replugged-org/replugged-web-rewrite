@@ -30,6 +30,15 @@ class RPStoreService
         return $asarPath;
     }
 
+    public function getRDT()
+    {
+        $rdtPath = storage_path('ReactDevTools.zip');
+        if (!File::exists($rdtPath)) {
+            return null;
+        }
+        return $rdtPath;
+    }
+
     public function listItems($type, $query = "")
     {
         if (Str::endsWith($type, "s"))

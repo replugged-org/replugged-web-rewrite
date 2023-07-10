@@ -50,6 +50,9 @@ Route::prefix('v1')->group(function () {
         });
     });
 
+    // Not a controller route because there's not really a controller that fits functionality like this.
+    Route::get('react-devtools', 'StoreController@getRDT');
+
     Route::get('user/{id}', 'UserController@profile');
 
     Route::get('stats/contributors', 'StatsController@contributors');
