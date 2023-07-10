@@ -56,7 +56,7 @@
             return `/backoffice/users/${this.value}`;
         }
     }" x-init="$watch('value', v => err = validate(v))">
-        <x-notice x-show="err" id="error-notice" color="red">
+        <x-notice x-show="err" id="error-notice" color="red" style="display: none;">
             Invalid input!
         </x-notice>
         <div class="toolbar">

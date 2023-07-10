@@ -175,6 +175,12 @@
 @endphp
 
 <header {{ $attributes->merge(['class' => $headerClasses]) }} x-data="menuManager" :class="{ 'opened': opened }">
+    {{-- I have put this here exclusively for lazy-loading the
+         button styles on pages where I am forced to use normal
+         <a> tags for buttons. --}}
+    {{-- TODO: REMOVE THIS WHEN CSS IS SEPARATED!!! --}}
+    <x-button to="/" style="display: none" />
+
     <a class="logo" href="{{ route('home') }}">
         <x-images.replugged class='plug'/>
     </a>
