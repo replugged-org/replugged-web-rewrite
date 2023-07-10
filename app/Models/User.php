@@ -189,4 +189,51 @@ class User extends Authenticatable
     {
         return $this->hasOne(PatreonData::class);
     }
+
+    public function format() {
+        $perks = (object) [
+            'color' => $this->patreon_data->badge_color,
+            'badge' => $this->patreon_data->badge,
+            'title' => $this->patreon_data->badge_title
+        ];
+
+        if ($this->flags & self::FLAG_HAS_DONATED) {
+            $perks->title = 'Former Replugged Supporter';
+            $perks->badge = 'default';
+        }
+
+        if ($this->flags & self::FLAG_IS_CUTIE) {
+            $perks->color = $this->patreon_data->badge_color || null;
+            $perks->title = "Replugged Supporter";
+
+            if (($this->patreon_data->pledge_tier ?? 1) >= 2 || $this->flags & self::FLAG_CUTIE_OVERRIDE) {
+                $perks->title = $this->patreon_data->badge_title || $perks->title;
+                $perks->badge = $this->patreon_data->badge || $perks->badge;
+            }
+        }
+
+        return (object) [
+            '_id' => $this->id,
+            'flags' => $this->flags & ~self::FLAG_GROUP_PRIVATE,
+            'perks' => $perks,
+            'username' => $this->name,
+            'discriminator' => $this->discriminator,
+            'patreonTier' => $this->patreon_data->pledge_tier ?? 0,
+            'badges' => (object) [
+                'developer' => ($this->flags & self::FLAG_DEVELOPER) !== 0,
+                'staff' => ($this->flags & self::FLAG_STAFF) !== 0,
+                'support' => ($this->flags & self::FLAG_SUPPORT) !== 0,
+                'contributor' => ($this->flags & self::FLAG_CONTRIBUTOR) !== 0,
+                'translator' => ($this->flags & self::FLAG_TRANSLATOR) !== 0,
+                'hunter' => ($this->flags & self::FLAG_BUG_HUNTER) !== 0,
+                'early' => ($this->flags & self::FLAG_EARLY_USER) !== 0,
+                'booster' => ($this->flags & self::FLAG_SERVER_BOOSTER) !== 0,
+                'custom' => (object) [
+                    'name' => $perks->title,
+                    'icon' => $perks->badge,
+                    'color' => $perks->color,
+                ],
+            ],
+        ];
+    }
 }

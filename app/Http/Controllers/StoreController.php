@@ -47,7 +47,7 @@ class StoreController extends Controller
     }
 
     // RDT is not actually in the store, but there wasn't a better place for this.
-    public function getRDT(Request $request, RPStoreService $store) {
+    public function getRDT(Request $request, RPStoreService $store): BinaryFileResponse|JsonResponse {
         $rdtPath = $store->getRDT();
         if ($rdtPath === null) {
             return response()->json(["error" => 404, "message" => "React DevTools not present in the storage folder.", "url" => "/{$request->path()}"]);
