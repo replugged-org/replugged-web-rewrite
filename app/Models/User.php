@@ -192,9 +192,9 @@ class User extends Authenticatable
 
     public function format() {
         $perks = (object) [
-            'color' => $this->patreon_data->badge_color,
-            'badge' => $this->patreon_data->badge,
-            'title' => $this->patreon_data->badge_title
+            'color' => $this->patreon_data->badge_color ?? false,
+            'badge' => $this->patreon_data->badge ?? false,
+            'title' => $this->patreon_data->badge_title ?? false,
         ];
 
         if ($this->flags & self::FLAG_HAS_DONATED) {

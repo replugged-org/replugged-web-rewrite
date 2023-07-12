@@ -107,8 +107,10 @@ $restUser = $user->format();
         @csrf
         <div class="tab-bar">
             <div class="tab" aria-selected="true">Manage</div>
-            <div class="tab">Perks</div>
-            <div class="tab">Guild badge</div>
+            @if ($user->patreon_data)
+                <div class="tab">Perks</div>
+                <div class="tab">Guild badge</div>
+            @endif
         </div>
 
         <div id="manage" style="display: block;">
@@ -121,48 +123,50 @@ $restUser = $user->format();
             <x-form.switch name="badgeEarly" label="Early" value="{{ $restUser->badges->early }}" />
             <x-form.switch name="badgeTranslator" label="Translator" value="{{ $restUser->badges->translator }}" />
         </div>
-        <div id="perks" style="display: none;">
-            <div class="form-field">
-                <label for="badge_color" class="form-label">Badge color</label>
-                <input id="badge_color" class="text-field" type="text" name="badge_color"
-                    value="{{ $user->patreon_data->badge_color }}">
-                <p class="form-note">hex code without the #. defaults to blurple.</p>
-            </div>
+        @if ($user->patreon_data)
+            <div id="perks" style="display: none;">
+                <div class="form-field">
+                    <label for="badge_color" class="form-label">Badge color</label>
+                    <input id="badge_color" class="text-field" type="text" name="badge_color"
+                        value="{{ $user->patreon_data->badge_color }}">
+                    <p class="form-note">hex code without the #. defaults to blurple.</p>
+                </div>
 
-            <div class="form-field">
-                <label for="badge_url" class="form-label">Badge Icon</label>
-                <input id="badge_url" class="text-field" type="text" name="badge_url"
-                    value="{{ $user->patreon_data->badge }}">
-                @isset($user->patreon_data->badge)
-                    <img src="{{ $user->patreon_data->badge }}" />
-                @endisset
-            </div>
+                <div class="form-field">
+                    <label for="badge_url" class="form-label">Badge Icon</label>
+                    <input id="badge_url" class="text-field" type="text" name="badge_url"
+                        value="{{ $user->patreon_data->badge }}">
+                    @isset($user->patreon_data->badge)
+                        <img src="{{ $user->patreon_data->badge }}" />
+                    @endisset
+                </div>
 
-            <div class="form-field">
-                <label for="badge_title" class="form-label">Badge Title</label>
-                <input id="badge_title" class="text-field" type="text" name="badge_title"
-                    value="{{ $user->patreon_data->badge_title }}">
+                <div class="form-field">
+                    <label for="badge_title" class="form-label">Badge Title</label>
+                    <input id="badge_title" class="text-field" type="text" name="badge_title"
+                        value="{{ $user->patreon_data->badge_title }}">
+                </div>
             </div>
-        </div>
-        <div id="guild-badge" style="display: none;">
-            <div class="form-field">
-                <label for="guild_id" class="form-label">Guild ID</label>
-                <input id="guild_id" class="text-field" type="text" name="guild_id"
-                    value="{{ $user->patreon_data->guild_id }}">
-            </div>
+            <div id="guild-badge" style="display: none;">
+                <div class="form-field">
+                    <label for="guild_id" class="form-label">Guild ID</label>
+                    <input id="guild_id" class="text-field" type="text" name="guild_id"
+                        value="{{ $user->patreon_data->guild_id }}">
+                </div>
 
-            <div class="form-field">
-                <label for="guild_badge_url" class="form-label">Guild Badge</label>
-                <input id="guild_badge_url" class="text-field" type="text" name="guild_badge_url"
-                    value="{{ $user->patreon_data->guild_badge_url }}">
-            </div>
+                <div class="form-field">
+                    <label for="guild_badge_url" class="form-label">Guild Badge</label>
+                    <input id="guild_badge_url" class="text-field" type="text" name="guild_badge_url"
+                        value="{{ $user->patreon_data->guild_badge_url }}">
+                </div>
 
-            <div class="form-field">
-                <label for="guild_tooltip" class="form-label">Guild Badge Tooltip</label>
-                <input id="guild_tooltip" class="text-field" type="text" name="guild_tooltip"
-                    value="{{ $user->patreon_data->guild_tooltip }}">
+                <div class="form-field">
+                    <label for="guild_tooltip" class="form-label">Guild Badge Tooltip</label>
+                    <input id="guild_tooltip" class="text-field" type="text" name="guild_tooltip"
+                        value="{{ $user->patreon_data->guild_tooltip }}">
+                </div>
             </div>
-        </div>
+        @endif
         <x-button type="submit">Save perks</x-button>
     </form>
 @endsection
