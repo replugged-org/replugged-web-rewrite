@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BackofficeController extends Controller
 {
@@ -31,12 +31,29 @@ class BackofficeController extends Controller
         return view('backoffice.edit-user', ['user' => $user]);
     }
 
-    public function editUser(Request $request, int $id){
+    public function editUser(Request $request, int $id)
+    {
         $user = User::where('discord_id', $id)->get();
         if ($user->isEmpty()) {
             abort(404);
         }
         $user = $user->first();
+
+        // Thank you, Dima
+        // <https://discord.com/channels/382339402338402315/382339402338402317/1128675442031865976>
+        $flags = [
+            'badgeDeveloper' => User::FLAG_DEVELOPER,
+            'badgeStaff' => User::FLAG_STAFF,
+            'badgeSupport' => User::FLAG_SUPPORT,
+            'badgeContributor' => User::FLAG_CONTRIBUTOR,
+            'badgeHunter' => User::FLAG_BUG_HUNTER,
+            'badgeEarly' => User::FLAG_EARLY_USER,
+            'badgeTranslator' => User::FLAG_TRANSLATOR,
+        ];
+        foreach ($flags as $name => $bit) {
+            $user->flags = $request->get($name) == 'on' ? ($user->flags | $bit) : ($user->flags & ~$bit);
+        }
+        $user->save();
 
         $user->patreon_data->badge = $request->get('badge_url');
         $user->patreon_data->badge_color = $request->get('badge_color');
