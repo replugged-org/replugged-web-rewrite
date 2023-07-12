@@ -30,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         // and filenames.
         Blade::extend(function ($view, $compiler) {
             $path = $compiler->getPath();
+            if ($path == null) return; // somehow this is possible? don't ask me how, but let's halt our plans.
             $res_path = resource_path('views') . '/';
             $name = str_replace($res_path, '', $path);
             preg_match('/([^\/]+$)/', $name, $arr);
