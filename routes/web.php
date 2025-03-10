@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ShareUserCount;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +31,12 @@ Route::get('me', 'UserController@me')->name('me')->middleware('auth');
 Route::get('me/edit', 'UserController@editMe')->name('me')->middleware('auth');
 Route::post('me/edit', 'UserController@update_perks')->middleware('auth');
 
-Route::middleware('auth')->prefix('backoffice')->name('backoffice.')->group(function () {
-    Route::redirect('/', '/backoffice/users');
-    Route::get('users', 'BackofficeController@showUsers')->name('users');
-    Route::get('users/{id}', 'BackofficeController@showEditUsers')->name('users.edit');
-    Route::post('users/{id}', 'BackofficeController@editUser')->name('users.editUser');
-});
+Route::middleware(['auth', ShareUserCount::class])
+    ->prefix('backoffice')
+    ->name('backoffice.')
+    ->group(function () {
+        Route::redirect('/', '/backoffice/users');
+        Route::get('users', 'BackofficeController@showUsers')->name('users');
+        Route::get('users/{id}', 'BackofficeController@showEditUsers')->name('users.edit');
+        Route::post('users/{id}', 'BackofficeController@editUser')->name('users.editUser');
+    });
