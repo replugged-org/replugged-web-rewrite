@@ -160,7 +160,6 @@ class User extends Authenticatable
         'name',
         'email',
         'avatar',
-        'discriminator',
         'flags',
     ];
 
@@ -217,7 +216,6 @@ class User extends Authenticatable
             'flags' => $this->flags & ~self::FLAG_GROUP_PRIVATE,
             'perks' => $perks,
             'username' => $this->name,
-            'discriminator' => $this->discriminator,
             'patreonTier' => $this->patreon_data->pledge_tier ?? 0,
             'badges' => (object) [
                 'developer' => ($this->flags & self::FLAG_DEVELOPER) !== 0,

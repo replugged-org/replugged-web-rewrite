@@ -29,18 +29,11 @@
 
 @props(['user'])
 
-@php
-    $result = "";
-    if ($user->discriminator === "0") $result .= "@";
-    $result .= "$user->name";
-    if ($user->discriminator !== "0") $result .= "#$user->discriminator";
-@endphp
-
 <div class="row">
     <x-images.avatar :user="$user" />
     <div class="row-info">
         <span>
-            {{ $result }}
+            {{ $user->name }}
         </span>
     </div>
     <div class="row-actions">

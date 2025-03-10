@@ -98,11 +98,12 @@
 
 @php
 // TODO: THIS IS A TEMPORARY SOLUTION!!! PLEASE, FOR THE LOVE OF GOD, START USING THE REST USER IN AS MANY PLACES AS POSSIBLE!!!
+/** @var $user \App\Models\User */
 $restUser = $user->format();
 @endphp
 
 @section('b-content')
-    <h3 class="title">Editing User - {{ $user->name }}#{{ $user->discriminator }}</h3>
+    <h3 class="title">Editing User - {{ $user->name }}</h3>
     <form enctype="multipart/form-data" action="{{ RoutePro::BACKOFFICE_USERS_MANAGE($user->discord_id) }}" method="POST">
         @csrf
         <div class="tab-bar">

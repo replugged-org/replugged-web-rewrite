@@ -87,11 +87,6 @@
         text-overflow: ellipsis;
     }
 
-    .discriminator {
-        font-size: .8rem;
-        color: var(--text-dark);
-    }
-
     .badge {
         margin-left: 4px;
         flex-shrink: 0;
@@ -162,16 +157,6 @@
     if (Auth::check()) {
         $isStaff = Auth::user()->flags & \App\Models\User::FLAG_STAFF;
     }
-
-    /** @see ../contributors/contributor.blade.php#L31-L38 */
-    $user = Auth::user();
-    if ($user) {
-        $result = "<div class='username'>";
-        if ($user->discriminator === "0") $result .= "@";
-        $result .= $user->name;
-        if ($user->discriminator !== "0") $result .= "<span class='discriminator'>#$user->discriminator</span>";
-        $result .= "</div>";
-    }
 @endphp
 
 <header {{ $attributes->merge(['class' => $headerClasses]) }} x-data="menuManager" :class="{ 'opened': opened }">
@@ -207,7 +192,7 @@
                 <x-images.avatar/>
                 <div class="details">
                     <div class="name">
-                        {!! $result !!}
+                        {{ Auth::user()->name }}
                         @if ($isStaff)
                             <x-icon name="badges.staff" class="badge"/>
                         @endif

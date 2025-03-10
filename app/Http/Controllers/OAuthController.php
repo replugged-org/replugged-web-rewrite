@@ -33,9 +33,6 @@ class OAuthController extends Controller
             'name' => $discordUser->name,
             'email' => $discordUser->email,
             'avatar' => $discordUser->avatar,
-            // Don't ask me why the provider doesn't return the discriminator, even when it has access to it.
-            // https://github.com/SocialiteProviders/Discord/blob/master/Provider.php#L89
-            'discriminator' => explode("#", $discordUser->nickname)[1],
         ]);
 
         // Insert Discord into the user's accounts.

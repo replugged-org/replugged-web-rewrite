@@ -39,10 +39,6 @@
         margin-bottom: 12px;
     }
 
-    .profile-discriminator {
-        color: var(--text-dark);
-    }
-
     .profile-header {
         font-size: .85em;
         text-transform: uppercase;
@@ -84,13 +80,6 @@
 
 @props(['user'])
 
-@php
-        $result = "<span>";
-        if ($user->discriminator === "0") $result .= "@";
-        $result .= "$user->name</span>";
-        if ($user->discriminator !== "0") $result .= "<span class='profile-discriminator'>#$user->discriminator</span>";
-@endphp
-
 <div class="profile-container">
     <div class="banner"></div>
     <div class="profile-section">
@@ -99,7 +88,7 @@
             <x-account.badges :perks="$user->patreon_data" :flags="$user->flags" />
         </div>
         <div class="props">
-            {!! $result !!}
+            {{ $user->name }}
         </div>
     </div>
     <div class="profile-section">
